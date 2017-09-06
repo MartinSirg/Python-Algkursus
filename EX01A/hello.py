@@ -9,4 +9,6 @@ def hello():
         :return: None
         """
     print("Hello world!")
+
+
 hello()
