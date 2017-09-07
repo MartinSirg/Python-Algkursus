@@ -4,8 +4,8 @@ import math
 
 def value_of_z(ex, x, y):
     """Write a function which calculates the value of z."""
-    if ex > 3:
-        print("Sellist ulesannet ei ole!")
+    if ex > 3 or ex < 1 or ex == float:
+        print("Sellist ülesannet ei ole!")
         return None
     elif ex == 1:
         return (x ** y) + (y ** x)
