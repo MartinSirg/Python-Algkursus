@@ -4,7 +4,6 @@ import math
 
 def value_of_z(ex, x, y):
     """Write a function which calculates the value of z."""
-
     if ex == 1:
         return (x ** y) + (y ** x)
     elif ex == 2:
