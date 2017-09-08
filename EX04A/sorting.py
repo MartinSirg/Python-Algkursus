@@ -1,5 +1,6 @@
 """Sort the strings in ascending order."""
 
+
 def sort_list(string_list):
     """
     Function to sort string_list by the length of it's elements.
@@ -34,7 +35,3 @@ def get_min_len_word(string_list):
             break
 
     return present_list
-
-ls = ['Mary', 'had', 'a', 'little', 'lamb', "b", "c"]
-
-print(get_min_len_word(ls))
