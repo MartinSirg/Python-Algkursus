@@ -9,10 +9,10 @@ def convert_name(name):
     If length of string is less than 3, return "ERROR".
     :param name: string, original name
     """
-    if len(name) < 3:
-        return "ERROR"
-    else:
+    if len(name) > 2 and name == str(name):
         return name[:3].upper() + "-" + str(len(name)) + name[len(name) - 2:]
+    else:
+        return "ERROR"
 
 
 def addition(a, b):
