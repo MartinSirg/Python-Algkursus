@@ -1,5 +1,6 @@
 """Sort the strings in ascending order."""
 
+"""Sort the strings in ascending order."""
 
 def sort_list(string_list):
     """
@@ -26,12 +27,11 @@ def get_min_len_word(string_list):
     :return: Smallest length String from string_list.
     """
     new_list = string_list
-    new_list.sort(key=len)
-    present_list = [new_list[0]]
-    for i in range(1, len(new_list), 1):
-        if len(new_list[i]) == len(new_list[0]):
-            present_list.append(new_list[i])
+    new_list.sort(key=len)                          #sorteerib listi
+    present_list = [new_list[0]]                    #lõplik return list
+    for i in range(1, len(new_list), 1):            #itereerib üle sorteeritud listi
+        if len(new_list[i]) == len(new_list[0]):    #kui listi 2. või suurema liikme pikkus on sama pikk
+            present_list.append(new_list[i])        #lisa listi liige final listi
         else:
             break
-
-    return present_list
+    return present_list[0]
