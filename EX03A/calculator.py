@@ -18,7 +18,6 @@ def convert_name(name):
 def addition(a, b):
     """
     Return an expression that sums the numbers a and b.
-
     Example: a = 3, b = 7 -> "3 + 7 = 10"
     """
     return str(a) + " + " + str(b) + " = " + str(a + b)
