@@ -88,4 +88,3 @@ def display(a, b, name="unnamed", operation="addition", width=0):
               f"{line(width)}")
 
     return result
-print(display(15, 5, name="Burroughs", operation="subtraction", width=20))
