@@ -10,7 +10,7 @@ def convert_name(name):
     :param name: string, original name
     """
     if len(name) > 2 and name == str(name):
-        return name[:3].upper() + "-" + str(len(name)) + name[len(name) - 2:]
+        return name[:3].upper() + "-" + str(len(name)) + name[len(name) - 2:].lower()
     else:
         return "ERROR"
 
