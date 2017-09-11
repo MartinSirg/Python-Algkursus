@@ -1,7 +1,7 @@
 """"Comparator."""
 
 
-def comparator(num):
+def comparator(num: float) -> str:
     """
     Compare the given number with 5 and return message depending on the number's value.
 
