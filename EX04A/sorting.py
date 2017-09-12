@@ -28,9 +28,9 @@ def get_min_len_word(string_list):
     new_list = string_list
     new_list.sort(key=len)
     present_list = [new_list[0]]
+
     for i in range(1, len(new_list), 1):
-        if len(new_list[i]) == len(new_list[0]):
+        if len(new_list[i]) == len(present_list[0]):
             present_list.append(new_list[i])
-        else:
-            break
-    return present_list[0]
+
+    return present_list
