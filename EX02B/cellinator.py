@@ -13,7 +13,6 @@ def get_cell_index(row, col, row_len):
     :param row_len: number of columns in the table
     :return: cell index at the given location
     """
-
     return col + row_len * row
 
 
@@ -49,8 +48,12 @@ def get_row_len(row, col, cell_index):
     :param cell_index: cell index
     :return: number of columns in the table
     """
-    row_len = (cell_index - col) / row
-    if col > row_len:
+
+    if row == 0 and cell_index > col:
+        return -1
+    elif row == 0:
+        return col
+    elif col > (cell_index - col) / row:
         return - 1
     else:
-        return row_len
+        return (cell_index - col) / row
