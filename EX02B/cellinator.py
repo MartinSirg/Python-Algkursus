@@ -48,9 +48,10 @@ def get_row_len(row, col, cell_index):
     :param cell_index: cell index
     :return: number of columns in the table
     """
-
     if row == 0 and cell_index > col:
         return -1
+    elif row == 0 and col == 0:
+        return 1
     elif row == 0:
         return col
     elif col > (cell_index - col) / row:
