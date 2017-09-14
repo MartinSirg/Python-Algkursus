@@ -27,6 +27,8 @@ def sort_list(string_list):
     :param string_list: List of Strings to be sorted.
     :return: Sorted list of Strings.
     """
+    if len(string_list) == 0:
+        return None
     new_list = string_list
     new_list.sort(key=len)
     return [get_min_len_word(string_list)] + new_list[1:len(new_list)]
@@ -34,3 +36,4 @@ def sort_list(string_list):
 print(get_min_len_word(['sdaad', 'dsadasd', 'sdsadafgsd','viiis']))
 print(sort_list(['sdaad', 'dsadasd', 'sdsadafgsd','viiis']))
 print(sort_list(["THIS", 'PROBLEM', "HAS", "ME", 'LIKE', 'PLS', 'Kill', 'ME', 'NOW']))
+print(sort_list([]))
