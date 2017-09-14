@@ -11,18 +11,11 @@ def get_min_len_word(string_list):
     :param string_list: List of Strings to look through.
     :return: Smallest length String from string_list.
     """
-    if len(string_list) == 0:
+    new_list = string_list
+    if len(new_list) == 0:
         return None
 
-    new_list = string_list
-    new_list.sort(key=len)
-    present_list = [new_list[0]]
-    for i in range(1, len(new_list), 1):
-        if len(new_list[i]) == len(new_list[0]):
-            present_list.append(new_list[i])
-        else:
-            break
-    return present_list
+    return min(new_list, key=len)
 
 
 def sort_list(string_list):
@@ -36,4 +29,8 @@ def sort_list(string_list):
     """
     new_list = string_list
     new_list.sort(key=len)
-    return new_list
+    return [get_min_len_word(string_list)] + new_list[1:len(new_list)]
+
+print(get_min_len_word(['sdaad', 'dsadasd', 'sdsadafgsd','viiis']))
+print(sort_list(['sdaad', 'dsadasd', 'sdsadafgsd','viiis']))
+print(sort_list(["THIS", 'PROBLEM', "HAS", "ME", 'LIKE', 'PLS', 'Kill', 'ME', 'NOW']))
