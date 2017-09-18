@@ -2,14 +2,17 @@
 
 
 def convert(time_string, from_seconds_in_minute, to_seconds_in_minute):
-    """"
-    Converts time formats depending on how many seconds there are in a minute.
+    """
+    Convert time from one time format to another.
 
-    1) Makes sure that there aren't more seconds in time_string than there are in from_seconds_in minute.
-    2) seconds: converts time_string into seconds.
-    3) new_minutes: finds minutes in new time and formats to show double digits.
-    4) new_seconds: finds seconds in new time and formats to show double digits.
-    5) new_time_string: joins new_minutes and new_seconds together as strings.
+    If there are more seconds in time_string than there are from_seconds_in_minute return None
+    Convert time_string into seconds as an int
+    Convert seconds back to minutes and seconds in the new time format.
+
+    :param time_string: time format that will be converted
+    :param from_seconds_in_minute: amount of seconds in a minute in the original time format
+    :param to_seconds_in_minute: amount of seconds in a minute in the new time format
+    :return: the new time format as a string
     """
     if int(time_string[-2:]) >= from_seconds_in_minute:
         return None
