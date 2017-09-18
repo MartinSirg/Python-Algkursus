@@ -18,4 +18,4 @@ def convert(time_string, from_seconds_in_minute, to_seconds_in_minute):
         new_minutes = "{:02d}".format(seconds // to_seconds_in_minute)
         new_seconds = "{:02d}".format(seconds % to_seconds_in_minute)
         new_time_string = str(new_minutes) + ":" + str(new_seconds)
-        return seconds
+        return new_time_string
