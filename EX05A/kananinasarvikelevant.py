@@ -3,7 +3,13 @@ import turtle
 
 
 def turnaround():
+    """"Turn the turtle around.
+
+    :return turn right 180 degrees
+    """
     return pen.right(180)
+
+
 pen = turtle.Pen()
 pen.speed(10.4)
 pen.fillcolor("gray")
@@ -51,6 +57,9 @@ pen.forward(30)
 
 
 def eye():
+    """"
+    Make an eye.
+    """
     pen.down()
     pen.fillcolor("black")
     pen.begin_fill()
@@ -65,6 +74,7 @@ def eye():
     pen.fillcolor("black")
     turnaround()
     pen.up()
+
 
 eye()
 pen.forward(60)
@@ -90,6 +100,9 @@ pen.circle(200, extent=45)
 
 
 def jalg():
+    """"
+    Make a leg.
+    """
     pen.fillcolor("black")
     pen.right(80)
     pen.down()
@@ -104,6 +117,7 @@ def jalg():
     pen.right(90)
     pen.forward(1)
     pen.right(100)
+
 
 jalg()
 pen.circle(200, extent=90)
