@@ -57,7 +57,7 @@ pen.forward(30)
 
 
 def eye():
-    """"
+    """
     Make an eye.
 
     :return an eye that is colored black and white
@@ -102,7 +102,7 @@ pen.circle(200, extent=45)
 
 
 def jalg():
-    """"
+    """
     Make a leg.
 
     :return a leg with a rectangle and a half circle that's colored black
