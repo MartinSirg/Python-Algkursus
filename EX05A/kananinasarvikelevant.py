@@ -60,7 +60,7 @@ def eye():
     """"
     Make an eye.
 
-    Make an eye that is colored black and white.
+    :return an eye that is colored black and white
     """
     pen.down()
     pen.fillcolor("black")
@@ -105,7 +105,7 @@ def jalg():
     """"
     Make a leg.
 
-    Make a leg with a rectangle and a half circle that's colored black.
+    :return a leg with a rectangle and a half circle that's colored black
     """
     pen.fillcolor("black")
     pen.right(80)
