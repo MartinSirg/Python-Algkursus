@@ -28,7 +28,6 @@ def scramble_word(word: str):
     :param word: input word
     :return: alphabetically scrambled word
     """
-    word = word.lower()
     if len(word) == 0:
         return ""
     elif word[-1] in string.punctuation:
@@ -37,16 +36,16 @@ def scramble_word(word: str):
         elif len(word) <= 4:
             return word
         else:
-            if "'" in word:                             # Keeping the "'" in the same place:
-                ap_index = word.find("'")               # 1.Find "'" index
-                word_list = list(word)                  # 2.Make the word into a list
-                word_list.remove("'")                   # 3.Remove the "'" from the list
-                scrambled = sorted(word_list[1:-2])     # 4.Scramble the required part
-                scrambled.insert(ap_index - 1, "'")     # 5.Put the "'" back
+            if "'" in word:                                         # Keeping the "'" in the same place:
+                ap_index = word.find("'")                           # 1.Find "'" index
+                word_list = list(word)                              # 2.Make the word into a list
+                word_list.remove("'")                               # 3.Remove the "'" from the list
+                scrambled = sorted(word_list[1:-2], key=str.lower)  # 4.Scramble the required part
+                scrambled.insert(ap_index - 1, "'")                 # 5.Put the "'" back
                 scrambled = "".join(scrambled)
                 return word[0] + scrambled + word[-2:]
             else:
-                scrambled = sorted(word[1:-2])
+                scrambled = sorted(word[1:-2], key=str.lower)
                 scrambled = "".join(scrambled)
                 return word[0] + scrambled + word[-2:]
     elif len(word) >= 7:
@@ -55,14 +54,20 @@ def scramble_word(word: str):
         return word
     else:
         if "'" in word:
-            ap_index = word.find("'")               # 1.Find "'" index
-            word_list = list(word)                  # 2.Make the word into a list
-            word_list.remove("'")                   # 3.Remove the "'" from the list
-            scrambled = sorted(word_list[1:-1])     # 4.Scramble the required part
-            scrambled.insert(ap_index - 1, "'")     # 5.Put the "'" back
+            ap_index = word.find("'")
+            word_list = list(word)
+            word_list.remove("'")
+            scrambled = sorted(word_list[1:-1], key=str.lower)
+            scrambled.insert(ap_index - 1, "'")
             scrambled = "".join(scrambled)
             return word[0] + scrambled + word[-1:]
         else:
-            scrambled = sorted(word[1:-1])
+            scrambled = sorted(word[1:-1], key=str.lower)
             scrambled = "".join(scrambled)
             return word[0] + scrambled + word[-1]
+print(scramble_word("acCaa"))  # aacCa
+print(scramble_sentence("zbBAy"))  # zAbBy
+print(scramble_sentence("xbBax"))   # xabBx
+
+kek = sorted("acCaa", key=str.lower)
+print(kek)
