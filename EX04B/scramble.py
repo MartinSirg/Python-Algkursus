@@ -9,17 +9,17 @@ def scramble_sentence(sentence: str) -> str:
     :param sentence: sentence to scramble
     :return: scrambled sentence
     """
-    sentence_list = sentence.split()
+    sentence_as_list = sentence.split()
     new_list = []
-    for i in range(len(sentence_list)):
-        new_list.append(scramble_word(sentence_list[i]))
+    for i in range(len(sentence_as_list)):
+        new_list.append(scramble_word(sentence_as_list[i]))
     new_list = " ".join(new_list)
     return new_list
 
 
 def scramble_word(word: str):
     """
-    Sort a word alphabetically, keeping only the astrophe, first and last letter as they were.
+    Sort a word alphabetically, keeping only the apostrophe, first and last letter as they were.
 
     If the last letter of a word is a symbol (.,;?!") the second to last letter must remain the same.
     If the length of the word without symbols is greater than 7 or the word can't be changed from the
@@ -41,14 +41,19 @@ def scramble_word(word: str):
                 word_list = list(word)                              # 2.Make the word into a list
                 word_list.remove("'")                               # 3.Remove the "'" from the list
                 scrambled = sorted(word_list[1:-2], key=str.lower)  # 4.Scramble the required part
-                scrambled.insert(ap_index - 1, "'")                 # 5.Put the "'" back
+                scrambled.insert(0, word[0])
+                scrambled.append(word[-2:])
+                scrambled.insert(ap_index, "'")
                 scrambled = "".join(scrambled)
-                return word[0] + scrambled + word[-2:]
+                print(ap_index)
+                return scrambled
             else:
                 scrambled = sorted(word[1:-2], key=str.lower)
+                scrambled.insert(0, word[0])
+                scrambled.append(word[-2:])
                 scrambled = "".join(scrambled)
-                return word[0] + scrambled + word[-2:]
-    elif len(word) >= 7:
+                return scrambled
+    elif len(word) >= 8:
         return word
     elif len(word) <= 3:
         return word
@@ -58,16 +63,18 @@ def scramble_word(word: str):
             word_list = list(word)
             word_list.remove("'")
             scrambled = sorted(word_list[1:-1], key=str.lower)
-            scrambled.insert(ap_index - 1, "'")
+            scrambled.insert(0, word[0])
+            scrambled.append(word[-1])
+            scrambled.insert(ap_index , "'")
             scrambled = "".join(scrambled)
-            return word[0] + scrambled + word[-1:]
+            return scrambled
         else:
             scrambled = sorted(word[1:-1], key=str.lower)
+            scrambled.insert(0, word[0])
+            scrambled.append(word[-1])
             scrambled = "".join(scrambled)
-            return word[0] + scrambled + word[-1]
-print(scramble_word("acCaa"))  # aacCa
-print(scramble_sentence("zbBAy"))  # zAbBy
-print(scramble_sentence("xbBax"))   # xabBx
+            return scrambled
 
-kek = sorted("acCaa", key=str.lower)
-print(kek)
+print(scramble_sentence("You're ready to learn and do your best, but you're also nervous."))  # Yor’ue radey to laern and do your best, but yor’ue also neoruvs.
+print("Yor'ue radey to laern and do your best, but yor'ue also neoruvs.")
+#print(scramble_word("you'll"))
