@@ -65,7 +65,7 @@ def scramble_word(word: str):
             scrambled = sorted(word_list[1:-1], key=str.lower)
             scrambled.insert(0, word[0])
             scrambled.append(word[-1])
-            scrambled.insert(ap_index , "'")
+            scrambled.insert(ap_index, "'")
             scrambled = "".join(scrambled)
             return scrambled
         else:
@@ -74,7 +74,3 @@ def scramble_word(word: str):
             scrambled.append(word[-1])
             scrambled = "".join(scrambled)
             return scrambled
-
-print(scramble_sentence("You're ready to learn and do your best, but you're also nervous."))  # Yor’ue radey to laern and do your best, but yor’ue also neoruvs.
-print("Yor'ue radey to laern and do your best, but yor'ue also neoruvs.")
-#print(scramble_word("you'll"))
