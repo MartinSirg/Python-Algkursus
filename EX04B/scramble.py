@@ -28,7 +28,9 @@ def scramble_word(word: str):
     :param word: input word
     :return: alphabetically scrambled word
     """
-    if word[-1] in string.punctuation:
+    if len(word) == 0:
+        return ""
+    elif word[-1] in string.punctuation:
         if len(word) >= 8:
             return word
         elif len(word) <= 4:
