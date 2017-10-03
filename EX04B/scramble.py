@@ -31,9 +31,7 @@ def scramble_word(word: str):
     if len(word) == 0:
         return ""
     elif word[-1] in string.punctuation:
-        if len(word) >= 8:
-            return word
-        elif len(word) <= 4:
+        if len(word) >= 9 or len(word) <= 4:
             return word
         else:
             if "'" in word:                                         # Keeping the "'" in the same place:
@@ -41,11 +39,10 @@ def scramble_word(word: str):
                 word_list = list(word)                              # 2.Make the word into a list
                 word_list.remove("'")                               # 3.Remove the "'" from the list
                 scrambled = sorted(word_list[1:-2], key=str.lower)  # 4.Scramble the required part
-                scrambled.insert(0, word[0])
-                scrambled.append(word[-2:])
-                scrambled.insert(ap_index, "'")
-                scrambled = "".join(scrambled)
-                print(ap_index)
+                scrambled.insert(0, word[0])                        # 5.Insert the first letter
+                scrambled.append(word[-2:])                         # 6.Insert the last letter
+                scrambled.insert(ap_index, "'")                     # 7.Insert the "'"
+                scrambled = "".join(scrambled)                      # 8.List --> String
                 return scrambled
             else:
                 scrambled = sorted(word[1:-2], key=str.lower)
@@ -53,9 +50,7 @@ def scramble_word(word: str):
                 scrambled.append(word[-2:])
                 scrambled = "".join(scrambled)
                 return scrambled
-    elif len(word) >= 8:
-        return word
-    elif len(word) <= 3:
+    elif len(word) >= 8 or len(word) <= 3:
         return word
     else:
         if "'" in word:
