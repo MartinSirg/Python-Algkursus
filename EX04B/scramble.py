@@ -69,6 +69,3 @@ def scramble_word(word: str):
             scrambled.append(word[-1])
             scrambled = "".join(scrambled)
             return scrambled
-
-print(scramble_sentence("LEKEK"))
-
