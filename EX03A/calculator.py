@@ -88,3 +88,5 @@ def display(a, b, name="unnamed", operation="addition", width=0):
               f"{line(width)}")
 
     return result
+
+print(convert_name("examPLE"))
