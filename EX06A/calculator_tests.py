@@ -1,5 +1,6 @@
 import calculator
-import pytest
+
+
 def test_repeat_zero_length():
     assert calculator.repeat("string", 0) == ""
 
@@ -39,9 +40,10 @@ def test_addition():
 def test_addition_neg():
     assert calculator.addition(-1, -2) == "-1 + -2 = -3"
 
-def test_addition_neg():
+
+def test_addition_neg_a():
     assert calculator.addition(-1, 2) == "-1 + 2 = 1"
 
 
-def test_addition_neg():
+def test_addition_neg_b():
     assert calculator.addition(1, -2) == "1 + -2 = -1"
