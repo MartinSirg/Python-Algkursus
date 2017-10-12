@@ -89,4 +89,4 @@ def display(a, b, name="unnamed", operation="addition", width=0):
 
     return result
 
-print(convert_name("examPLE"))
+print(display(1, 200, "kekmachine", "addition", ))

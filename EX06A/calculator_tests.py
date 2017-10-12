@@ -4,7 +4,6 @@ import calculator
 def test_repeat_zero_length():
     assert calculator.repeat("string", 0) == ""
 
-
 def test_repeat_negative_length():
     assert calculator.repeat("string", -2) == ""
 
@@ -63,3 +62,36 @@ def test_subtraction_neg_a():
 
 def test_subtraction_neg_b():
     assert calculator.subtraction(1, -2) == "1 - -2 = 3"
+
+
+def test_line_empty_decorated():
+    assert calculator.line(0, True) == ""
+
+
+def test_line_not_decorated():
+    assert calculator.line(4, False) == "----"
+
+
+def test_line_decorated():
+    assert calculator.line(4, True) == ">--<"
+
+
+def test_line_small_decorated():
+    assert calculator.line(1, True) == ""
+
+
+def test_line_small_not_decorated():
+    assert calculator.line(1, False) == "-"
+
+
+def test_display_addition():
+    assert calculator.display(1, 200, "kekmachine", "addition", ) == "       KEK-10ne\n>-------------<\n\
+|1 + 200 = 201|\n---------------"
+
+def test_display_subtraction():
+    assert calculator.display(200, 1, "kekmachine", "subtraction", ) == "       KEK-10ne\n>-------------<\n\
+|200 - 1 = 199|\n---------------"
+
+
+
+
