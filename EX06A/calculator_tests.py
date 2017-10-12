@@ -39,5 +39,9 @@ def test_addition():
 def test_addition_neg():
     assert calculator.addition(-1, -2) == "-1 + -2 = -3"
 
+def test_addition_neg():
+    assert calculator.addition(-1, 2) == "-1 + 2 = 1"
 
 
+def test_addition_neg():
+    assert calculator.addition(1, -2) == "1 + -2 = -1"
