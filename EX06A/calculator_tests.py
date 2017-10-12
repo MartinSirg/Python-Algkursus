@@ -32,6 +32,12 @@ def test_convert_name_no_upper_in_beginning():
     assert calculator.convert_name("calculator") == "CAL-10or"
 
 
+def test_addition():
+    assert calculator.addition(1, 2) == "1 + 2 = 3"
+
+
+def test_addition_neg():
+    assert calculator.addition(-1, -2) == "-1 + -2 = -3"
 
 
 
