@@ -82,14 +82,13 @@ def test_subtraction_neg_b():
     assert calculator.subtraction(1, -2) == "1 - -2 = 3"
 
 
-def test_line_empty_decorated():
+def test_line_empty():
     """TEMP DOCSTRING."""
-    assert calculator.line(0, True) == ""
-
+    assert calculator.line(4,) == "----"
 
 def test_line_not_decorated():
     """TEMP DOCSTRING."""
-    assert calculator.line(4,) == "----"
+    assert calculator.line(4, False) == "----"
 
 
 def test_line_decorated():
