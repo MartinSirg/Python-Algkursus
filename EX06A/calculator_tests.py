@@ -65,7 +65,7 @@ def test_subtraction_neg_b():
 
 
 def test_line_empty_decorated():
-    assert calculator.line(0, True) == ""
+    assert calculator.line(1, True) == ""
 
 
 def test_line_not_decorated():

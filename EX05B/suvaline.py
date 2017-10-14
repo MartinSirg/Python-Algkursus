@@ -97,3 +97,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+data_list = [100, 50, 150, 300, 200, 100, 50, 150, 300, 200.9, 200, 100]
+
+draw_graph(turtle,-200,-200,data_list)
