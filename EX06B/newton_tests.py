@@ -1,8 +1,10 @@
+"""Test the newton function."""
 import newton
+
 
 def test_newton_normal():
     """Test function under normal conditions."""
-    assert newton.square_root_with_newton_method(4, 1) == 2
+    assert newton.square_root_with_newton_method(4, 1) == 2.000
 
 
 def test_newton_number_zero():
@@ -12,7 +14,7 @@ def test_newton_number_zero():
 
 def test_newton_iterations_zero():
     """Test function if iterations is 0."""
-    assert newton.square_root_with_newton_method(16, 0) == 8
+    assert newton.square_root_with_newton_method(16, 0) == 8.000
 
 
 def test_newton_number_negative():
@@ -29,3 +31,7 @@ def test_newton_decimal_points():
     """Check if the returned value has a maximum of 3 decimal points."""
     assert newton.square_root_with_newton_method(401, 10) == 20.025
 
+
+def test_newton__points():
+    """Check if the returned value has a maximum of 3 decimal points."""
+    assert newton.square_root_with_newton_method(16, 1.5) == 5.000
