@@ -93,5 +93,6 @@ def test_display_subtraction():
 |200 - 1 = 199|\n---------------"
 
 
-
+def test_display_other():
+    assert calculator.display(200, 1, "kekmachine", "other", ) == "ERROR"
 
