@@ -86,6 +86,7 @@ def test_line_empty():
     """TEMP DOCSTRING."""
     assert calculator.line(4,) == "----"
 
+
 def test_line_not_decorated():
     """TEMP DOCSTRING."""
     assert calculator.line(4, False) == "----"
