@@ -63,5 +63,5 @@ def test_newton_same_2():
 
 
 def test_newton_float():
-    """Test function when number is a float"""
+    """Test function when number is a float."""
     assert newton.square_root_with_newton_method(100.31, 10) == 10.015
