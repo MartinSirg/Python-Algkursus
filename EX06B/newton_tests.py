@@ -38,4 +38,4 @@ def test_newton__points():
 
 
 def test_newton_high_iterations():
-    assert newton.square_root_with_newton_method(20, 1000) == 20.025
+    assert newton.square_root_with_newton_method(20, 1000) == 4.472
