@@ -53,7 +53,7 @@ def test_newton_small_numbers():
 
 
 def test_newton_same_1():
-    assert newton.square_root_with_newton_method(1, 1) == 1.25
+    assert newton.square_root_with_newton_method(10000, 10000) == 100.000
 
 
 def test_newton_same_2():
