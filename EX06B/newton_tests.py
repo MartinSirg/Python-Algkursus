@@ -45,3 +45,20 @@ def test_newton_high_iterations():
 def test_newton_high_numbers():
     """Test function with a high iteration"""
     assert newton.square_root_with_newton_method(21032, 10) == 145.024
+
+
+def test_newton_small_numbers():
+    """Test function with a small number"""
+    assert newton.square_root_with_newton_method(2, 10) == 1.414
+
+
+def test_newton_same_1():
+    assert newton.square_root_with_newton_method(1, 1) == 1.25
+
+
+def test_newton_same_2():
+    assert newton.square_root_with_newton_method(1000, 1000) == 31.623
+
+
+def test_newton_float():
+    assert newton.square_root_with_newton_method(100.31, 10) == 10.015
