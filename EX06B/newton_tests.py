@@ -35,3 +35,7 @@ def test_newton_decimal_points():
 def test_newton__points():
     """Check if the returned value has a maximum of 3 decimal points."""
     assert newton.square_root_with_newton_method(16, 1.5) == 5.000
+
+
+def test_newton_high_iterations():
+    assert newton.square_root_with_newton_method(20, 1000) == 20.025
