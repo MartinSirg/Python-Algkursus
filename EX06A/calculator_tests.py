@@ -121,5 +121,5 @@ def test_display_subtraction():
 
 def test_display_other():
     """Make sure that when the operation parameter is something else than subtraction or addition,\
-the returned "ERROR" """
+the returned "ERROR" ."""
     assert calculator.display(200, 1, "kekmachine", "other", ) == "ERROR"
