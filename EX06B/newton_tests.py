@@ -49,11 +49,11 @@ def test_newton_high_numbers():
 
 def test_newton_small_numbers():
     """Test function with a small number"""
-    assert newton.square_root_with_newton_method(2, 10) == 1.414
+    assert newton.square_root_with_newton_method(0.0001, 1) is None
 
 
 def test_newton_same_1():
-    assert newton.square_root_with_newton_method(10000, 10000) == 100.000
+    assert newton.square_root_with_newton_method(-10, -10) is None
 
 
 def test_newton_same_2():
