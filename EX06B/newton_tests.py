@@ -57,7 +57,7 @@ def test_newton_same_1():
 
 
 def test_newton_same_2():
-    assert newton.square_root_with_newton_method(1000, 1000) == 31.623
+    assert newton.square_root_with_newton_method(0, 0) is None
 
 
 def test_newton_float():
