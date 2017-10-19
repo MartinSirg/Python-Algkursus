@@ -21,17 +21,12 @@ def to_dictionary(names: list) -> dict:
     :param names: list of all the names
     :return: dictionary {"name:sex": number}
     """
-    list_of_names = []                                  # Make a list for different names
-    for i in range(len(names)):                         # Loop through the dictionary of people
-        if i == 0:                                      #
-            list_of_names.append(names[0])              # Add the first name in the dictionary to the list
-            continue                                    #
-        elif names[i] == names[i - 1]:                  # If current iterable name is same as the last continue
-            continue                                    #
-        else:                                           #
-            list_of_names.append(names[i])              # If find new name, add to list
+    different_names = []
+    for name in names:
+        if name not in different_names:
+            different_names.append(name)
     dictionary = {}
-    for name in list_of_names:
+    for name in different_names:
         dictionary[name] = names.count(name)
     return dictionary
 
@@ -128,3 +123,5 @@ if __name__ == '__main__':
     print(names_by_popularity(male_names))  # ->   1. Mati: 800
 #                                                  2. Tõnu: 400
 #                                                  (empty line)
+    dict1 = to_dictionary(read_from_file())
+    print(dict1)
