@@ -31,8 +31,8 @@ def to_dictionary(names: list) -> dict:
         else:                                           #
             list_of_names.append(names[i])              # If find new name, add to list
     dictionary = {}
-    for i in range(len(list_of_names)):
-        dictionary[list_of_names[i]] = names.count(list_of_names[i])
+    for name in list_of_names:
+        dictionary[name] = names.count(name)
     return dictionary
 
 
@@ -65,15 +65,15 @@ def most_popular(names_dict: dict) -> str:
     """
     if len(names_dict) == 0:
         return "Empty dictionary."
-    current_value = 0
-    current_key = ""
+    highest_value = 0
+    highest_key = ""
     for key, value in names_dict.items():
-        if value > current_value:
-            current_value = value
-            current_key = key
+        if value > highest_value:
+            highest_value = value
+            highest_key = key
         else:
             continue
-    return current_key
+    return highest_key
 
 
 def number_of_people(names_dict: dict) -> int:
@@ -114,3 +114,17 @@ def names_by_popularity(names_dict: dict) -> str:
         string = string + str(i) + ". " + current_mp + ": " + str(names_dict[current_mp]) + "\n"
         del names_dict[most_popular(names_dict)]
     return string
+
+
+if __name__ == '__main__':
+    example_names = ("Kati:F\n" * 1000 + "Mati:M\n" * 800 + "Mari:F\n" * 600 + "Tõnu:M\n" * 400).rstrip("\n").split("\n")
+    people = to_dictionary(example_names)
+    print(people)  # -> {'Kati:F': 1000, 'Mati:M': 800, 'Mari:F': 600, 'Tõnu:M': 400}
+    male_names, female_names = to_sex_dicts(people)
+    print(male_names)  # -> {'Mati': 800, 'Tõnu': 400}
+    print(female_names)  # -> {'Kati': 1000, 'Mari': 600}
+    print(most_popular(male_names))  # -> "Mati"
+    print(number_of_people(people))  # -> 2800
+    print(names_by_popularity(male_names))  # ->   1. Mati: 800
+#                                                  2. Tõnu: 400
+#                                                  (empty line)
