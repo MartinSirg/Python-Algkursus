@@ -21,13 +21,12 @@ def to_dictionary(names: list) -> dict:
     :param names: list of all the names
     :return: dictionary {"name:sex": number}
     """
-    different_names = []
-    for name in names:
-        if name not in different_names:
-            different_names.append(name)
     dictionary = {}
-    for name in different_names:
-        dictionary[name] = names.count(name)
+    for name in names:
+        if name not in dictionary:
+            dictionary[name] = 1
+        else:
+            dictionary[name] += 1
     return dictionary
 
 
