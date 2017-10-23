@@ -22,14 +22,12 @@ def simulate(wmap: list, moves: list) -> list:
     """
     under_sparky = "-"
     grid = make_grid(wmap)
-    position = find_sparky(wmap) # position: row, col
+    position = find_sparky(wmap)    # position: row, col
     row = position[0]
     col = position[1]
     for move in moves:
         if move == "N":
-            if row - 1 < 0:
-                continue
-            elif grid[row - 1][col] == "#":
+            if row - 1 < 0 or grid[row - 1][col] == "#":
                 continue
             else:
                 grid[row][col] = under_sparky
@@ -37,9 +35,7 @@ def simulate(wmap: list, moves: list) -> list:
                 grid[row - 1][col] = "X"
                 row = row - 1
         elif move == "S":
-            if row + 1 >= len(grid):
-                continue
-            elif grid[row + 1][col] == "#":
+            if row + 1 >= len(grid) or grid[row + 1][col] == "#":
                 continue
             else:
                 grid[row][col] = under_sparky
@@ -47,9 +43,7 @@ def simulate(wmap: list, moves: list) -> list:
                 grid[row + 1][col] = "X"
                 row = row + 1
         elif move == "W":
-            if col - 1 < 0:
-                continue
-            elif grid[row][col - 1] == "#":
+            if col - 1 < 0 or grid[row][col - 1] == "#":
                 continue
             else:
                 grid[row][col] = under_sparky
@@ -57,9 +51,7 @@ def simulate(wmap: list, moves: list) -> list:
                 grid[row][col - 1] = "X"
                 col = col - 1
         else:
-            if col + 1 >= len(grid[0]):
-                continue
-            elif grid[row][col + 1] == "#":
+            if col + 1 >= len(grid[0]) or grid[row][col + 1] == "#":
                 continue
             else:
                 grid[row][col] = under_sparky
@@ -98,3 +90,35 @@ def change_state(new_value):
         return "w"
     else:
         return "-"
+
+
+if __name__ == '__main__':
+    wmap1 = [
+        "#www-",
+        "wXw#-",
+    ]
+
+    moves1 = ["N", "E", "E", "S", "E"]
+    print("\n".join(simulate(wmap1, moves1)))
+
+    # #---X
+    # w-w#-
+
+    assert simulate(wmap1, moves1) == ["#---X", "w-w#-"]
+
+    print()
+
+    wmap2 = [
+        "WWWW",
+        "-wwW",
+        "X-#W",
+    ]
+
+    moves2 = ["N", "N", "E", "E", "S", "W", "W", "S", "E", "E"]
+    print("\n".join(simulate(wmap2, moves2)))
+
+    # wwwW
+    # ---W
+    # -X#W
+
+    assert simulate(wmap2, moves2) == ["wwwW", "---W", "-X#W"]
