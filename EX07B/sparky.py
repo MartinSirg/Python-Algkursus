@@ -25,15 +25,15 @@ def simulate(wmap: list, moves: list) -> list:
     position = find_sparky(wmap)    # position: row, col
     row = position[0]
     col = position[1]
-    for move in moves:
-        if move == "N":
-            if row - 1 < 0 or grid[row - 1][col] == "#":
-                continue
-            else:
-                grid[row][col] = under_sparky
-                under_sparky = change_state(grid[row - 1][col])
-                grid[row - 1][col] = "X"
-                row = row - 1
+    for move in moves:                                              # Cycle through the moves
+        if move == "N":                                             # Sparky goes North
+            if row - 1 < 0 or grid[row - 1][col] == "#":            # If the spot above sparky is out of the map or an
+                continue                                            # obstacle, ignore move
+            else:                                                   #
+                grid[row][col] = under_sparky                       # Sparky's last position's value is changed
+                under_sparky = change_state(grid[row - 1][col])     # remember the value of the new position
+                grid[row - 1][col] = "X"                            # new position is changed to X
+                row = row - 1                                       # new position's location is saved
         elif move == "S":
             if row + 1 >= len(grid) or grid[row + 1][col] == "#":
                 continue
@@ -76,6 +76,7 @@ def make_grid(wmap: list):
 
 
 def find_sparky(wmap: list):
+    """Locate sparky on the grid."""
     grid = make_grid(wmap)
     for i in range(len(grid)):
         for i2 in range(len(grid[i])):
@@ -86,6 +87,7 @@ def find_sparky(wmap: list):
 
 
 def change_state(new_value):
+    """Change the state of the grass after being moved on."""
     if new_value == "W":
         return "w"
     else:
