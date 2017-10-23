@@ -22,9 +22,7 @@ def simulate(wmap: list, moves: list) -> list:
     """
     under_sparky = "-"
     grid = make_grid(wmap)
-    position = find_sparky(wmap)    # position: row, col
-    if position == [None, None]:
-        return grid
+    position = find_sparky(wmap) # position: row, col
     row = position[0]
     col = position[1]
     for move in moves:
@@ -90,12 +88,9 @@ def find_sparky(wmap: list):
     for i in range(len(grid)):
         for i2 in range(len(grid[i])):
             if grid[i][i2] == "X":
-                y = i
-                x = i2
-            else:
-                y = None
-                x = None
-    return [y, x]
+                row = i
+                col = i2
+    return [row, col]
 
 
 def change_state(new_value):
