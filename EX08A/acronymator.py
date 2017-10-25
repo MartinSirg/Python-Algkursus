@@ -36,7 +36,7 @@ def check_word(word: str) -> bool:
         return False
     else:
         string2 = ""
-        for i in range(len(word) - 1):
+        for i in range(len(word)):
             string2 += word[i]
             if string2[i - 1] in symbols and string2[i] not in symbols:
                 result = False
