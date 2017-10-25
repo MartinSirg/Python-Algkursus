@@ -27,7 +27,7 @@ def check_word(word: str) -> bool:
     :param word: word
     :return: bool
     """
-    symbols = "()1234567890!?_@#$%^&*.,'"
+    symbols = "()1234567890!?_@#$%^&*.,'-"
     string1 = ""
     for i in range(len(word)):
         if word[i] not in symbols:
@@ -53,7 +53,6 @@ def check_message_length(words: list) -> bool:
     :param words: list of words
     :return: bool
     """
-
     if len(words) > 50:
         return False
     else:
