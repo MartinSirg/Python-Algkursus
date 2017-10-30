@@ -25,7 +25,7 @@ if __name__ == '__main__':
     print(get_reversed_acronym("   Spaces     are    irrelevant   "))  # --> IS
 
     mes = """
-    As soon as the light in the bedroom went out there was a stirring and a
+    Ass soon as the light in the bedroom went out there was a stirring and a
     fluttering all through the farm buildings. Word had gone round during the
     day that old Major, the prize Middle White boar, had had a strange dream
     on the previous night and wished to communicate it to the other animals.
