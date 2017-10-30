@@ -7,6 +7,7 @@ symbols = "/#$%^&*@0123456789"
 def _correct_message(message: str) -> str:
     """
     Correct message.
+
     Take out all the symbols between spaces, unless they are at the end or in the beginning.
     Divide the message into three sections:
     1.st section - symbols in the beginning of the word
@@ -51,6 +52,7 @@ def _correct_message(message: str) -> str:
 def _encrypt_message(message, shift):
     """
     Encrypt the message using Caesar's cipher.
+
     lower case stay lower case
     upper case stays upper case
     symbols stay the same
@@ -83,6 +85,9 @@ def _encrypt_message(message, shift):
 
 
 def get_corrected_encrypted_message(initial_message, shift):
+    """
+    Correct and encrypt the message using previous functions.
+    """
     fixed_message = _correct_message(initial_message)
     encrypted_message = _encrypt_message(fixed_message, shift)
     return encrypted_message

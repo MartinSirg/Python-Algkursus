@@ -6,6 +6,7 @@ import encoder
 def _decrypt_message(encrypted_message, shift):
     """
     Decrypt the message.
+
     :param encrypted_message: encrypted message
     :param shift: Caesars's cipher's shift
     :return: decrypted message
@@ -35,7 +36,8 @@ def _decrypt_message(encrypted_message, shift):
 
 def get_message(initial_message, shift, decrypt=False):
     """
-    Correct message and return encrypted or decrypted message
+    Correct message and return encrypted or decrypted message.
+
     :param initial_message: uncorrected message
     :param shift: Caesars's cipher's shift
     :param decrypt: if set to True, then message is also decrypted
