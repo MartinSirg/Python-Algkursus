@@ -85,9 +85,7 @@ def _encrypt_message(message, shift):
 
 
 def get_corrected_encrypted_message(initial_message, shift):
-    """
-    Correct and encrypt the message using previous functions.
-    """
+    """Correct and encrypt the message using previous functions."""
     fixed_message = _correct_message(initial_message)
     encrypted_message = _encrypt_message(fixed_message, shift)
     return encrypted_message
