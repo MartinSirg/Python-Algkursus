@@ -4,6 +4,7 @@ import re
 
 
 class InvalidPrincessException(Exception):
+    """Throw this error, when invalid operation with princess."""
     pass
 
 
@@ -50,11 +51,9 @@ def extract_information(line: str) -> list:
 
     Example output: ['Helen-elizabeth', 'IN PANIC', 'Ancient Ruins', None]
     Example output: ['Julianne', 'EATEN', 'Heaven', 'Will rule the kingdom'].
-    "Leesa                         EATEN                         Underworld                    Will rule the kingdom"
     Obviously, she won't rule anything, however. How sad.
     :param line: decrypted line from the file.
     :return: information about single princess
-    (\w)+[ ]+[ ]?(A-Z)
     """
     line = line.strip("\n")
     princess = re.split(r'[ ]{2,}', line)
@@ -98,6 +97,12 @@ def sort_by_status(filtered_lines) -> list:
 
 
 def sort_by_place(sorted_lines):
+    """
+    Sort another sorted_list in order the places appear in the first place.
+
+    :param sorted_lines:
+    :return: list of sorted princesses:
+    """
     order = []
     princess_in_place = {
         "Dark Cave": [],
@@ -140,12 +145,15 @@ def write(read_file):
     """
     list_of_princesses = sort_by_place(sort_by_status(filter_by_status(read(read_file))))
     with open("princesses_to_save.txt", "w") as file:
-        file.write("NAME" + " "*26 + "STATUS" + " "*24 + "LOCATION"+" "*22 + "DETAILS" + " "*23 + "\n")
-        file.write("="*120 + "\n")
+        file.write("NAME" + " " * 26 + "STATUS" + " " * 24 + "LOCATION" + " " * 22 + "DETAILS" + "\n")
+        file.write("=" * 120 + "\n")
         file.write("\n")
         for i, princess in enumerate(list_of_princesses):
-            for value in princess:
-                file.write(value + " "*(30 - len(value)))
+            for int2, value in enumerate(princess):
+                if int2 < 3:
+                    file.write(value + " " * (30 - len(value)))
+                else:
+                    file.write(value)
             if i != len(list_of_princesses) - 1:
                 file.write("\n")
 
