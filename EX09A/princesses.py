@@ -6,7 +6,7 @@ def read(read_file) -> list:
     """
     Read, decrypt and save information from the given file.
 
-    :param file: the file we read from
+    :param read_file: the file we read from
     :exception: Exception
     :return: lines
     """
@@ -21,6 +21,7 @@ def read(read_file) -> list:
                 list_of_princesses.append(info)
     return list_of_princesses
 
+
 def decode(line: str) -> str:
     """
     Decode each line.
@@ -31,7 +32,6 @@ def decode(line: str) -> str:
     """
     b = base64.b64decode(line)
     return b.decode()
-
 
 
 def extract_information(line: str) -> list:
@@ -87,6 +87,7 @@ def filter_by_status(lines) -> list:
             princesses.append(princess)
     return princesses
 
+
 def sort_by_status(filtered_lines) -> list:
     """
     Sort lines by pattern FIGHTS FOR LIFE > INJURED > IN PANIC > BORED.
@@ -104,6 +105,7 @@ def sort_by_status(filtered_lines) -> list:
                 in_order.append(princess)
         order.remove(order[0])
     return in_order
+
 
 def write(read_file):
     """
@@ -127,9 +129,17 @@ def write(read_file):
     """
     file = open("princesses_to_save.txt", "w")
     princesses = sort_by_status(filter_by_status(read(read_file)))
-    for i ,princess in enumerate(princesses):
-        for i in range(len(princess)):
-            file.write(princess[i] + "\n")
-        file.write("\n")
+    for i, princess in enumerate(princesses):
+        for int2 in range(len(princess)):
+            if len(princesses) - 1 != i:
+                file.write(princess[int2] + "\n")
+            else:
+                if int2 < 3:
+                    file.write(princess[int2] + "\n")
+                else:
+                    file.write(princess[3])
+        if len(princesses) - 1 != i:
+            file.write("\n")
+
 
 write("file.txt")
