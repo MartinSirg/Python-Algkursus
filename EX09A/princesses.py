@@ -21,7 +21,7 @@ def read(read_file) -> list:
                     info = extract_information(decoded_line)
                     list_of_princesses.append(info)
     except FileNotFoundError:
-        print("This file does not exist!")
+        print("File not found!")
         return []
     return list_of_princesses
 
