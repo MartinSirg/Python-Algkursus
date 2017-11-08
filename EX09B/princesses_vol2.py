@@ -150,7 +150,7 @@ def write(read_file):
     list_of_princesses = sort_by_place(sort_by_status(filter_by_status(read(read_file))))
     with open("princesses_to_save.txt", "w") as file:
         file.write("NAME" + " " * 26 + "STATUS" + " " * 24 + "LOCATION" + " " * 22 + "DETAILS" + "\n")
-        file.write("=" * 120 + "\n")
+        file.write("=" * 98 + "\n")
         file.write("\n")
         for i, princess in enumerate(list_of_princesses):
             for int2, value in enumerate(princess):
