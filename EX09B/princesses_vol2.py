@@ -127,7 +127,7 @@ def sort_by_place(sorted_lines):
         status = princess[1]
         if status is None:
             raise InvalidPrincessException("Invalid princess!")
-        elif false_status[0] in princess or false_status[1] in princess or false_status[2] in princess:
+        elif status in false_status:
             raise InvalidPrincessException("The princess is already {status}!")
         if place not in order:
             order.append(place)
