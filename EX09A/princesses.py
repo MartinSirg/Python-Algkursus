@@ -11,14 +11,18 @@ def read(read_file) -> list:
     :return: lines
     """
     list_of_princesses = []
-    with open(read_file) as file:
-        for i, line in enumerate(file):
-            if i < 3:
-                continue
-            else:
-                decoded_line = decode(line)
-                info = extract_information(decoded_line)
-                list_of_princesses.append(info)
+    try:
+        with open(read_file) as file:
+            for i, line in enumerate(file):
+                if i < 3:
+                    continue
+                else:
+                    decoded_line = decode(line)
+                    info = extract_information(decoded_line)
+                    list_of_princesses.append(info)
+    except FileNotFoundError:
+        print("This file does not exist!")
+        return []
     return list_of_princesses
 
 
