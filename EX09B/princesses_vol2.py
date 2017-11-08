@@ -116,6 +116,7 @@ def sort_by_place(sorted_lines):
         "Pub": [],
         "Town Hall": [],
         "Office": [],
+        "Home": []
     }
     false_status = ["EATEN", "SAVED", "SLAYED THE DRAGON HERSELF"]
     for princess in sorted_lines:
