@@ -1,5 +1,5 @@
 """Generate list of princesses."""
-import base64
+import base64, re
 
 
 def read(read_file) -> list:
@@ -47,31 +47,9 @@ def extract_information(line: str) -> list:
     :param line: decrypted line from the file.
     :return: information about single princess
     """
-    list_of_words = line.split()
-    if len(list_of_words) < 1:
-        return ["ERROR"]
-    name = list_of_words[0]
-    status = []
-    list_of_words.remove(name)
-    for word in list_of_words:
-        if word.isupper() is True:
-            status.append(word)
-    for word in status:
-        list_of_words.remove(word)
-    status = " ".join(status)
-    location = []
-    for i in range(len(list_of_words)):
-        if list_of_words[i][0].isupper() is True:
-            location.append(list_of_words[i])
-    if len(location) > 0:
-        location.remove(location[-1])
-    for word in location:
-        if word in list_of_words:
-            list_of_words.remove(word)
-    details = " ".join(list_of_words)
-    location = " ".join(location)
-    result = [name, status, location, details]
-    return result
+    line = line.strip("\n")
+    princess = re.split(r'[ ]{2,}', line)
+    return princess
 
 
 def filter_by_status(lines) -> list:
