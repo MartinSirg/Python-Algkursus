@@ -21,8 +21,7 @@ def read(read_file) -> list:
                     info = extract_information(decoded_line)
                     list_of_princesses.append(info)
     except FileNotFoundError:
-        print("File not found!")
-        return []
+        raise FileNotFoundError("File not found!")
     return list_of_princesses
 
 
@@ -145,5 +144,5 @@ def write(read_file):
         if len(princesses) - 1 != i:
             file.write("\n")
 
-
-write("file.txt")
+if __name__ == '__main__':
+    write("file.txt")
