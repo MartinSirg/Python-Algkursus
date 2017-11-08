@@ -5,6 +5,7 @@ import re
 
 class InvalidPrincessException(Exception):
     """Throw this error, when invalid operation with princess."""
+
     pass
 
 
@@ -117,7 +118,8 @@ def sort_by_place(sorted_lines):
         "Town Hall": [],
         "Office": [],
         "Home": [],
-        "Away": []
+        "Away": [],
+        "In Town": []
     }
     false_status = ["EATEN", "SAVED", "SLAYED THE DRAGON HERSELF"]
     for princess in sorted_lines:
