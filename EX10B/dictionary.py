@@ -8,10 +8,9 @@ class Dictionary:
     def __init__(self, initial_data):
         lines = initial_data.splitlines()
         dictionary = {}
-        symbols = "0123456789!\"#$%&'()*+,./:;<=>?@[\]\^_\-`{|}~\\"
         pattern = re.compile(r"(\([anv]\))([^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+"
                              r"(-?[^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+)?)\s-\s([^ ].*)")
-        for line in lines:   # TODO [a-zA-Z] doesnt work, must use exception for banned symbols
+        for line in lines:
             match = pattern.match(line)
             if match is not None:
                 word_type = match.group(1)
@@ -110,6 +109,9 @@ if __name__ == '__main__':
 
     small_dictionary = Dictionary(small_dict_data)
 
+    for key1, value1 in small_dictionary.dictionary.items():
+        print(key1 + " : " + str(value1))
+
     assert len(small_dictionary.get_definitions("kind")) == 0
     assert len(small_dictionary.get_definitions("phone")) == 0
     assert len(small_dictionary.get_definitions("ph one")) == 0
@@ -154,7 +156,5 @@ if __name__ == '__main__':
     assert len(search_result) == 2
     assert 'consume' in search_result
     assert 'injury' in search_result
-    for keyo, valueo in small_dictionary.dictionary.items():
-        print(keyo + " : " + str(valueo))
-    print(type(small_dictionary.dictionary.values()), end=" ")
-    print("  <== Ei tagasta <class 'list'> hah ")
+
+    print("Ready for submission!")
