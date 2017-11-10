@@ -9,7 +9,7 @@ class Dictionary:
         lines = initial_data.splitlines()
         dictionary = {}
         pattern = re.compile(r"(\([anv]\))([a-zA-Z]+(-?[a-zA-Z]+)?)\s-\s([^ ].*)")
-        for line in lines:
+        for line in lines:   # TODO [a-zA-Z] doesnt work, must use exception for banned symbols
             match = pattern.match(line)
             if match is not None:
                 word_type = match.group(1)
