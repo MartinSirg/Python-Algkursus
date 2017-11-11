@@ -23,6 +23,12 @@ class Dictionary:
         self.dictionary = dictionary
 
     def get_definitions(self, word):
+        """
+        Get all the definitions for a specific word.
+
+        :param word: word to get definitions for
+        :return: list of definitions
+        """
         result = []
         word = word.lower()
         for key, value in self.dictionary.items():
@@ -79,7 +85,7 @@ class Dictionary:
         for key in self.dictionary.keys():
             if len(key[3:]) > max_len or len(key[3:]) < min_len:
                 continue
-            elif subword in key:
+            elif subword in key and key[3:] not in result:
                 result.append(key[3:])
             else:
                 continue
@@ -111,50 +117,3 @@ if __name__ == '__main__':
 
     for key1, value1 in small_dictionary.dictionary.items():
         print(key1 + " : " + str(value1))
-
-    assert len(small_dictionary.get_definitions("kind")) == 0
-    assert len(small_dictionary.get_definitions("phone")) == 0
-    assert len(small_dictionary.get_definitions("ph one")) == 0
-    assert len(small_dictionary.get_definitions("choice")) == 0
-    assert len(small_dictionary.get_definitions("-create")) == 0
-    assert len(small_dictionary.get_definitions("create")) == 0
-    assert len(small_dictionary.get_definitions("beautiful")) == 1
-    assert len(small_dictionary.get_definitions("fire")) == 3
-    assert len(small_dictionary.get_definitions("Consume")) == 1
-    assert len(small_dictionary.get_definitions("wise")) == 2
-    assert small_dictionary.is_word_noun("fire") is True
-    assert small_dictionary.is_word_verb("fire") is True
-    assert small_dictionary.is_word_adjective('warm') is True
-    assert small_dictionary.is_word_noun("place") is False
-
-    all_nouns = small_dictionary.get_all_nouns()
-    assert isinstance(all_nouns, list)
-
-    assert len(all_nouns) == 3
-    assert "law" in all_nouns
-    assert "injury" in all_nouns
-    assert "fire" in all_nouns
-
-    all_verbs = small_dictionary.get_all_verbs()
-    assert isinstance(all_verbs, list)
-
-    assert len(all_verbs) == 3
-    assert "consume" in all_verbs
-    assert "claim" in all_verbs
-    assert "fire" in all_verbs
-
-    all_adjectives = small_dictionary.get_all_adjectives()
-    assert isinstance(all_adjectives, list)
-
-    assert len(all_adjectives) == 4
-    assert "wise" in all_adjectives
-    assert "warm" in all_adjectives
-    assert "beautiful" in all_adjectives
-    assert "well-known" in all_adjectives
-
-    search_result = small_dictionary.search("N", min_len=5, max_len=8)
-    assert len(search_result) == 2
-    assert 'consume' in search_result
-    assert 'injury' in search_result
-
-    print("Ready for submission!")
