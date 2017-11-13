@@ -6,16 +6,26 @@ class Dictionary:
     """Work with words and their definitions."""
 
     def __init__(self, initial_data):
+        """
+        Make a dictionary with words and their definitions.
+
+        :param initial_data: string containing words and their definitions
+        """
         lines = initial_data.splitlines()
         dictionary = {}
         pattern = re.compile(r"(\([anv]\))([^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+"
                              r"(-?[^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+)?)\s-\s([^ ].*)")
+        one_or_more_letters = re.compile(r"[a-zA-züõöä]")
         for line in lines:
             match = pattern.match(line)
             if match is not None:
                 word_type = match.group(1)
                 word = match.group(2).lower()
                 definition = match.group(4)
+                has_one_letter = one_or_more_letters.search(word)
+                has_one_letter_2 = one_or_more_letters.search(definition)
+                if has_one_letter is None or has_one_letter_2 is None:
+                    continue
                 if word_type + word not in dictionary:
                     dictionary[word_type + word] = [definition]
                 else:
@@ -125,7 +135,8 @@ if __name__ == '__main__':
                                  "(b)consume - to destroy or expend by use",
                                  "(v)consume - to eat or drink up; devour",
                                  "(v)fire - to expose to the action of fire; subject to heat",
-                                 "(v)fire - to inspire"])
+                                 "(v)fire - to inspire",
+                                 "(v)ä§§§ - to inspire"])
 
     small_dictionary = Dictionary(small_dict_data)
 
