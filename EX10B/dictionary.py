@@ -1,6 +1,6 @@
 """Dictionary."""
 import re
-import string
+
 
 class Dictionary:
     """Work with words and their definitions."""
@@ -10,17 +10,13 @@ class Dictionary:
         dictionary = {}
         pattern = re.compile(r"(\([anv]\))([^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+"
                              r"(-?[^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+)?)\s-\s([^ ].*)")
-        at_least_1_letter = re.compile(r"[a-zA-Z]+")
         for line in lines:
             match = pattern.match(line)
             if match is not None:
                 word_type = match.group(1)
                 word = match.group(2).lower()
                 definition = match.group(4)
-                match_at_least_1_letter = at_least_1_letter.search(word)
-                if match_at_least_1_letter is None:
-                    continue
-                elif word_type + word not in dictionary:
+                if word_type + word not in dictionary:
                     dictionary[word_type + word] = [definition]
                 else:
                     dictionary[word_type + word].append(definition)
@@ -42,6 +38,7 @@ class Dictionary:
         return result
 
     def is_word_noun(self, word):
+        """Check if the word is in nouns."""
         word = word.lower()
         for key in self.dictionary.keys():
             if "(n)" + word == key:
@@ -49,6 +46,7 @@ class Dictionary:
         return False
 
     def is_word_verb(self, word):
+        """Check if the word is in verbs."""
         word = word.lower()
         for key in self.dictionary.keys():
             if "(v)" + word == key:
@@ -56,6 +54,7 @@ class Dictionary:
         return False
 
     def is_word_adjective(self, word):
+        """Check if the word is in adjectives."""
         word = word.lower()
         for key in self.dictionary.keys():
             if "(a)" + word == key:
@@ -63,6 +62,7 @@ class Dictionary:
         return False
 
     def get_all_nouns(self):
+        """Return all nouns in dictionary."""
         result = []
         for key in self.dictionary.keys():
             if key[1] == "n":
@@ -70,6 +70,7 @@ class Dictionary:
         return result
 
     def get_all_verbs(self):
+        """Return all verbs in dictionary."""
         result = []
         for key in self.dictionary.keys():
             if key[1] == "v":
@@ -77,6 +78,7 @@ class Dictionary:
         return result
 
     def get_all_adjectives(self):
+        """Return all verbs in adjectives."""
         result = []
         for key in self.dictionary.keys():
             if key[1] == "a":
@@ -84,6 +86,14 @@ class Dictionary:
         return result
 
     def search(self, subword, min_len=0, max_len=999999999999999999999999999999999999999999999999999999999999999999999):
+        """
+        Search for a word.
+
+        :param subword: string to be searched within words
+        :param min_len: minimum length of a returnable word
+        :param max_len: maximum length of a returnable word
+        :return: list of words
+        """
         result = []
         subword = subword.lower()
         for key in self.dictionary.keys():
@@ -115,7 +125,7 @@ if __name__ == '__main__':
                                  "(b)consume - to destroy or expend by use",
                                  "(v)consume - to eat or drink up; devour",
                                  "(v)fire - to expose to the action of fire; subject to heat",
-                                 "(v)¥¥¥ - to inspire"])
+                                 "(v)fire - to inspire"])
 
     small_dictionary = Dictionary(small_dict_data)
 
