@@ -41,7 +41,6 @@ class BankAccount:
 
     def get_name(self):
         """Return bank account owner's name."""
-
         return self.name
 
     def transfer(self, target: object, amount: float, fee=0.01):
