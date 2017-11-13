@@ -63,11 +63,11 @@ class BankAccount:
             fee = fee / 2
         if target == self:
             fee = 0
-        if amount + (amount * fee) > self.balance:
+        if amount + (amount * fee) > self.get_balance():
             return False
         else:
-            self.balance -= amount + (amount * fee)
-            target.balance += amount
+            self.withdraw(amount + (amount * fee))
+            target.deposit(amount)
             return True
 
 
