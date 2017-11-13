@@ -43,7 +43,7 @@ class BankAccount:
         """Return bank account owner's name."""
         return self.name
 
-    def transfer(self, target: object, amount: float, fee=0.01):
+    def transfer(self, target, amount, fee=0.01):
         """
         Transfer money to another BankAccount object.
 
