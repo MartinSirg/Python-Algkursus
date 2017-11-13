@@ -1,6 +1,6 @@
 """Dictionary."""
 import re
-
+import string
 
 class Dictionary:
     """Work with words and their definitions."""
@@ -10,13 +10,17 @@ class Dictionary:
         dictionary = {}
         pattern = re.compile(r"(\([anv]\))([^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+"
                              r"(-?[^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+)?)\s-\s([^ ].*)")
+        at_least_1_letter = re.compile(r"[a-zA-Z]+")
         for line in lines:
             match = pattern.match(line)
             if match is not None:
                 word_type = match.group(1)
                 word = match.group(2).lower()
                 definition = match.group(4)
-                if word_type + word not in dictionary:
+                match_at_least_1_letter = at_least_1_letter.search(word)
+                if match_at_least_1_letter is None:
+                    continue
+                elif word_type + word not in dictionary:
                     dictionary[word_type + word] = [definition]
                 else:
                     dictionary[word_type + word].append(definition)
@@ -111,7 +115,7 @@ if __name__ == '__main__':
                                  "(b)consume - to destroy or expend by use",
                                  "(v)consume - to eat or drink up; devour",
                                  "(v)fire - to expose to the action of fire; subject to heat",
-                                 "(v)fire - to inspire"])
+                                 "(v)¥¥¥ - to inspire"])
 
     small_dictionary = Dictionary(small_dict_data)
 
