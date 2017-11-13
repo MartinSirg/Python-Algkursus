@@ -59,7 +59,7 @@ class BankAccount:
             target_name = target.get_name()
         except AttributeError:
             return False
-        if self.name == target_name:
+        if self.get_name() == target_name:
             fee = fee / 2
         if target == self:
             fee = 0
