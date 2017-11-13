@@ -2,11 +2,10 @@
 
 
 class BankAccount:
-    """Represent a bank account"""
+    """Represent a bank account."""
 
     def __init__(self, name: str, balance: float):
         """Define name and balance within BankAccount."""
-
         if balance < 0:
             balance = 0
         self.balance = balance
@@ -21,7 +20,6 @@ class BankAccount:
         Otherwise change the balance and return True
         :param amount: amount to be deducted from balance
         """
-
         if self.balance < amount:
             return False
         elif amount < 0:
@@ -32,7 +30,6 @@ class BankAccount:
 
     def deposit(self, amount: float):
         """Add amount to balance, unless amount is negative."""
-
         if amount < 0:
             self.balance = self.balance
         else:
@@ -40,11 +37,10 @@ class BankAccount:
 
     def get_balance(self):
         """Return balance."""
-
         return self.balance
 
     def get_name(self):
-        """Return bank account owner's name"""
+        """Return bank account owner's name."""
 
         return self.name
 
@@ -60,8 +56,11 @@ class BankAccount:
         :param fee: fee that will be deducted from transferrers account
         :return: True if transfer is successful
         """
-
-        if self.name == target.get_name():
+        try:
+            target_name = target.get_name()
+        except AttributeError:
+            return False
+        if self.name == target_name:
             fee = fee / 2
         if target == self:
             fee = 0
@@ -71,6 +70,7 @@ class BankAccount:
             self.balance -= amount + (amount * fee)
             target.balance += amount
             return True
+
 
 if __name__ == '__main__':
     mary_account = BankAccount("Mary", 100)
@@ -90,19 +90,19 @@ if __name__ == '__main__':
     assert abs(mary_account.get_balance() - 110) < 0.001
     mary_account.deposit(-10)
     assert abs(mary_account.get_balance() - 110) < 0.001
-    assert mary_account.withdraw(-10) == False
+    assert mary_account.withdraw(-10) is False
     assert abs(mary_account.get_balance() - 110) < 0.001
-    assert mary_account.withdraw(1000) == False
+    assert mary_account.withdraw(1000) is False
     assert abs(mary_account.get_balance() - 110) < 0.001
-    assert mary_account.withdraw(10) == True
+    assert mary_account.withdraw(10) is True
     assert abs(mary_account.get_balance() - 100) < 0.001
 
-    assert mary_account.transfer(guido_account, 10) == True
+    assert mary_account.transfer(guido_account, 10) is True
     assert abs(mary_account.get_balance() - 89.9) < 0.001
     assert abs(guido_account.get_balance() - 160) < 0.001
     print("Add asserts for transferring between the accounts of the same owner")
     print("Add asserts for transferring between the same account")
-    mary_account.transfer(mary_second_account,10)
+    mary_account.transfer(mary_second_account, 10)
     assert mary_second_account.get_balance() == 88.01
     mary_second_account.transfer(mary_second_account, 10)
     assert mary_second_account.get_balance() == 88.01
