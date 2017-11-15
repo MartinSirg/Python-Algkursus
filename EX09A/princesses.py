@@ -123,5 +123,6 @@ def write(read_file):
         if len(princesses) - 1 != i:
             file.write("\n")
 
+
 if __name__ == '__main__':
     write("file.txt")

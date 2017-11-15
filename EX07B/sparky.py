@@ -33,7 +33,7 @@ def simulate(wmap: list, moves: list) -> list:
                 grid[row][col] = under_sparky                       # Sparky's last position's value is changed
                 under_sparky = change_state(grid[row - 1][col])     # remember the value of the new position
                 grid[row - 1][col] = "X"                            # new position is changed to X
-                row = row - 1                                       # new position's location is saved
+                row = row    - 1                                       # new position's location is saved
         elif move == "S":
             if row + 1 >= len(grid) or grid[row + 1][col] == "#":
                 continue
