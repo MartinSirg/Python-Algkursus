@@ -1,5 +1,6 @@
 """Generate list of princesses."""
-import base64, re
+import base64
+import re
 
 
 def read(read_file) -> list:
