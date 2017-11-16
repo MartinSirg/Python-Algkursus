@@ -1,4 +1,4 @@
-"""Bank account."""
+"""Bankk account."""
 
 
 class BankAccount:
