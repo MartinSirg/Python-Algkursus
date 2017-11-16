@@ -15,7 +15,7 @@ class Dictionary:
         dictionary = {}
         pattern = re.compile(r"(\([anv]\))([^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+"
                              r"(-?[^ 0-9!\"#$%&'()*+,./:;<=>?@[\]^_\-`{|}~\\]+)?)\s-\s([^ ].*)")
-        one_or_more_letters = re.compile(r"[a-zA-züõöä]")
+        one_or_more_letters = re.compile(r"[a-zA-Züõöä]")
         for line in lines:
             match = pattern.match(line)
             if match is not None:

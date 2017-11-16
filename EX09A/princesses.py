@@ -1,5 +1,6 @@
 """Generate list of princesses."""
-import base64, re
+import base64
+import re
 
 
 def read(read_file) -> list:
@@ -121,6 +122,7 @@ def write(read_file):
                     file.write(princess[3])
         if len(princesses) - 1 != i:
             file.write("\n")
+
 
 if __name__ == '__main__':
     write("file.txt")
