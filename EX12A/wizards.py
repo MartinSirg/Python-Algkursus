@@ -59,10 +59,10 @@ class Wizard:
         if wand is not None:
             attribute1, attribute2 = wand.split(", ")
             wand = Wand(attribute1,attribute2)
-            if wand.check_wand(wand) is None:
-                self.wand = wand
-            else:
+            if wand.check_wand(wand) is not None:
                 raise MismatchError("The wand like that does not exist!")
+            else:
+                self.wand = wand
 
     def set_wand(self, wand):
         """Give wizard a new wand if wand is correctly formatted."""
