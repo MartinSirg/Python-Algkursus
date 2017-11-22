@@ -57,6 +57,8 @@ class Wizard:
         if wand is None:
             self.wand = None
         if wand is not None:
+            attribute1, attribute2 = wand.split(", ")
+            wand = Wand(attribute1,attribute2)
             if wand.check_wand(wand) is None:
                 self.wand = wand
             else:
