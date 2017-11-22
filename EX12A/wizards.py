@@ -143,5 +143,5 @@ class School:
             return None
 
     def __str__(self):
-        """When object is called, return it's name"""
+        """When object is called return it's name"""
         return self.name
