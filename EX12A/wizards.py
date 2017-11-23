@@ -100,7 +100,7 @@ class School:
         """
         if isinstance(wizard, Wizard) is False:  # Isn't Wizard class instance
             raise MismatchError("It's a filthy muggle!")
-        elif wizard.name is None:
+        elif wizard.name is not str:
             raise MismatchError("It's a filthy muggle!")
         elif wizard.get_wand() is None:  # No wand defined
             raise MismatchError("It's a filthy muggle!")
