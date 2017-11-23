@@ -36,7 +36,7 @@ class Wand:
     @staticmethod
     def check_wand(wand):
         """Make sure object is Wand class and has both required arguments."""
-        if type(wand) != Wand:
+        if isinstance(wand, Wand) is False:
             raise MismatchError("The wand like that does not exist!")
         elif wand.wood_type is None:
             raise MismatchError("The wand like that does not exist!")
@@ -140,40 +140,3 @@ class School:
         """When object is called, return it's name"""
         return self.name
 
-if __name__ == '__main__':
-
-    wand1 = Wand("Holly", "Phoenix feather")
-    wand2 = Wand("Vine", "Dragon heartstring")
-    bad_wand = Wand(None, "empty")
-    assert str(wand1) == 'Holly, Phoenix feather'
-    assert str(wand2) == 'Vine, Dragon heartstring'
-
-    wizard1 = Wizard("Harry Potter")
-    wizard2 = Wizard("Hermione Granger")
-    assert str(wizard1) == 'Harry Potter'
-    assert str(wizard2) == 'Hermione Granger'
-
-    bad_wizard = Wizard(None, None)
-    school = School("Hogwarts School of Witchcraft and Wizardry")
-    assert str(school) == 'Hogwarts School of Witchcraft and Wizardry'
-
-    assert wizard1.get_wand() is None
-    wizard1.set_wand(wand1)
-    assert str(wizard1.get_wand()) == 'Holly, Phoenix feather'
-    # wizard1.set_wand(bad_wand)  # --> MismatchError: The wand like that does not exist!
-
-    assert school.add_wizard(wizard1) == 'Harry Potter started studying in Hogwarts School of Witchcraft and Wizardry.'
-    assert school.get_wizards().__len__() == 1
-
-    # school.add_wizard(wizard2)  # --> MismatchError: It's a filthy muggle!
-    # school.add(bad_wizard)  # --> MismatchError: It's a filthy muggle!
-    wizard2.set_wand(wand2)
-    assert school.add_wizard(wizard2) == 'Hermione Granger started studying in Hogwarts School of Witchcraft and Wizardry.'
-
-    assert school.get_wizards().__len__() == 2
-    assert school.add_wizard(wizard1) == 'Harry Potter is already studying in this school!'
-
-    assert str(school.get_wizard_by_wand(wand1)) == 'Harry Potter'
-    assert str(school.get_wizard_by_wand(wand2)) == 'Hermione Granger'
-
-    school.remove_wizard(wizard1)
