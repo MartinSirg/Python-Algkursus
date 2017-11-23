@@ -62,18 +62,15 @@ class Wizard:
 
     def set_wand(self, wand):
         """Give wizard a new wand if wand is correctly formatted."""
-
         Wand.check_wand(wand)
         self.wand = wand
 
     def get_wand(self):
         """Return wand."""
-
         return self.wand
 
     def __str__(self):
         """Return wizard's name if object is called."""
-
         return self.name
 
 
@@ -90,7 +87,6 @@ class School:
 
     def __init__(self, name: str):
         """Define school name and make sure it exists in the schools list."""
-
         if name not in School.schools:
             raise MismatchError("There is no such school!")
         else:
@@ -102,7 +98,6 @@ class School:
         wizard must have a name and a correct wand.
         wizard must be of Wizard class
         """
-
         if isinstance(wizard, Wizard) is False:  # Isn't Wizard class instance
             raise MismatchError("It's a filthy muggle!")
         elif wizard.get_wand() is None:  # No wand defined
@@ -113,11 +108,10 @@ class School:
             return str(wizard) + " is already studying in this school!"
         else:
             School.students.append(wizard)
-            return str(wizard) + " started studying in " + self.name + "."
+            return str(wizard) + " started studying in " + str(self.name) + "."
 
     def remove_wizard(self, wizard):
         """Remove a wizard from the school"""
-
         if wizard in School.students:
             School.students.remove(wizard)
 
