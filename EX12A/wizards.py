@@ -103,7 +103,7 @@ class School:
         wizard must be of Wizard class
         """
 
-        if isinstance(wizard, Wizard):  # Isn't Wizard class instance
+        if isinstance(wizard, Wizard) is False:  # Isn't Wizard class instance
             raise MismatchError("It's a filthy muggle!")
         elif wizard.get_wand() is None:  # No wand defined
             raise MismatchError("It's a filthy muggle!")
