@@ -57,7 +57,7 @@ class Wizard:
         if wand is None:
             self.wand = None
         else:
-            wand.check_wand(wand)
+            wand.check_wand()
             self.wand = wand
 
     def set_wand(self, wand):
