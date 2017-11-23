@@ -52,7 +52,7 @@ class Wizard:
     """Class for Wizard object."""
 
     def __init__(self, name, wand=None):
-        """Define wizaed's name and wand if it's formatted correctly"""
+        """Define wizaed's name and wand if it's formatted correctly."""
         self.name = name
         if wand is None:
             self.wand = None
@@ -100,9 +100,9 @@ class School:
         """
         if isinstance(wizard, Wizard) is False:  # Isn't Wizard class instance
             raise MismatchError("It's a filthy muggle!")
-        elif wizard.get_wand() is None:  # No wand defined
+        elif wizard.name is None:
             raise MismatchError("It's a filthy muggle!")
-        elif len(str(wizard)) < 1:  # No name defined
+        elif wizard.get_wand() is None:  # No wand defined
             raise MismatchError("It's a filthy muggle!")
         elif wizard in School.students:
             return f"{wizard.name} is already studying in this school!"
@@ -111,7 +111,7 @@ class School:
             return f"{wizard.name} started studying in {self.name}."
 
     def remove_wizard(self, wizard):
-        """Remove a wizard from the school"""
+        """Remove a wizard from the school."""
         if wizard in School.students:
             School.students.remove(wizard)
 
@@ -131,5 +131,5 @@ class School:
         return None
 
     def __str__(self):
-        """When object is called, return it's name"""
+        """When object is called, return it's name."""
         return self.name
