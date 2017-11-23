@@ -57,16 +57,14 @@ class Wizard:
         if wand is None:
             self.wand = None
         else:
-            wand.check_wand()
+            wand.check_wand(wand)
             self.wand = wand
 
     def set_wand(self, wand):
         """Give wizard a new wand if wand is correctly formatted."""
 
-        if wand.check_wand(wand) is not None:
-            raise MismatchError("The wand like that does not exist!")
-        else:
-            self.wand = wand
+        wand.check_wand(wand)
+        self.wand = wand
 
     def get_wand(self):
         """Return wand."""
@@ -132,14 +130,50 @@ class School:
 
     def get_wizard_by_wand(self, wand):
         """Search for a wizard, based on wand."""
-        if wand.check_wand(wand) is not None:
-            raise MismatchError("The wand like that does not exist!")
-        else:
-            for student in School.students:
-                if student.get_wand() == wand:
-                    return student
-            return None
+        wand.check_wand(wand)
+        for student in School.students:
+            if student.get_wand() == wand:
+                return student
+        return None
 
     def __str__(self):
         """When object is called, return it's name"""
         return self.name
+
+if __name__ == '__main__':
+
+    wand1 = Wand("Holly", "Phoenix feather")
+    wand2 = Wand("Vine", "Dragon heartstring")
+    bad_wand = Wand(None, "empty")
+    assert str(wand1) == 'Holly, Phoenix feather'
+    assert str(wand2) == 'Vine, Dragon heartstring'
+
+    wizard1 = Wizard("Harry Potter")
+    wizard2 = Wizard("Hermione Granger")
+    assert str(wizard1) == 'Harry Potter'
+    assert str(wizard2) == 'Hermione Granger'
+
+    bad_wizard = Wizard(None, None)
+    school = School("Hogwarts School of Witchcraft and Wizardry")
+    assert str(school) == 'Hogwarts School of Witchcraft and Wizardry'
+
+    assert wizard1.get_wand() is None
+    wizard1.set_wand(wand1)
+    assert str(wizard1.get_wand()) == 'Holly, Phoenix feather'
+    # wizard1.set_wand(bad_wand)  # --> MismatchError: The wand like that does not exist!
+
+    assert school.add_wizard(wizard1) == 'Harry Potter started studying in Hogwarts School of Witchcraft and Wizardry.'
+    assert school.get_wizards().__len__() == 1
+
+    # school.add_wizard(wizard2)  # --> MismatchError: It's a filthy muggle!
+    # school.add(bad_wizard)  # --> MismatchError: It's a filthy muggle!
+    wizard2.set_wand(wand2)
+    assert school.add_wizard(wizard2) == 'Hermione Granger started studying in Hogwarts School of Witchcraft and Wizardry.'
+
+    assert school.get_wizards().__len__() == 2
+    assert school.add_wizard(wizard1) == 'Harry Potter is already studying in this school!'
+
+    assert str(school.get_wizard_by_wand(wand1)) == 'Harry Potter'
+    assert str(school.get_wizard_by_wand(wand2)) == 'Hermione Granger'
+
+    school.remove_wizard(wizard1)
