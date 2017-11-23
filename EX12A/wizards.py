@@ -57,7 +57,7 @@ class Wizard:
         if wand is None:
             self.wand = None
         else:
-            wand.check_wand(wand)
+            Wand.check_wand(wand)
             self.wand = wand
 
     def set_wand(self, wand):
@@ -130,7 +130,7 @@ class School:
 
     def get_wizard_by_wand(self, wand):
         """Search for a wizard, based on wand."""
-        wand.check_wand(wand)
+        Wand.check_wand(wand)
         for student in School.students:
             if student.get_wand() == wand:
                 return student
