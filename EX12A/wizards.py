@@ -105,10 +105,10 @@ class School:
         elif len(str(wizard)) < 1:  # No name defined
             raise MismatchError("It's a filthy muggle!")
         elif wizard in School.students:
-            return str(wizard) + " is already studying in this school!"
+            return f"{wizard.name} is already studying in this school!"
         else:
             School.students.append(wizard)
-            return str(wizard) + " started studying in " + str(self.name) + "."
+            return f"{wizard.name} started studying in {self.name}."
 
     def remove_wizard(self, wizard):
         """Remove a wizard from the school"""
@@ -133,4 +133,3 @@ class School:
     def __str__(self):
         """When object is called, return it's name"""
         return self.name
-
