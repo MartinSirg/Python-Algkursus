@@ -63,7 +63,7 @@ class Wizard:
     def set_wand(self, wand):
         """Give wizard a new wand if wand is correctly formatted."""
 
-        wand.check_wand(wand)
+        Wand.check_wand(wand)
         self.wand = wand
 
     def get_wand(self):
@@ -103,7 +103,7 @@ class School:
         wizard must be of Wizard class
         """
 
-        if type(wizard) != Wizard:  # Isn't Wizard class instance
+        if isinstance(wizard, Wizard):  # Isn't Wizard class instance
             raise MismatchError("It's a filthy muggle!")
         elif wizard.get_wand() is None:  # No wand defined
             raise MismatchError("It's a filthy muggle!")
