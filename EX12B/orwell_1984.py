@@ -154,9 +154,10 @@ class Party:
         :param citizen: Citizen class instance
 
         """
-        citizen.set_party(None)
-        citizen.status = "nonperson"
-        citizen.name = None
+        if citizen in self.members:
+            citizen.set_party(None)
+            citizen.status = "nonperson"
+            citizen.name = None
 
     def get_privileges(self):
         """
@@ -237,12 +238,15 @@ class BigBrother:
         :param status: string
         :return: number of vaporized people per session
         """
+        current_session = 0
         all_citizens = self.get_all_citizens()[:]  # copy of the list
         for citizen in all_citizens:
             if citizen.get_status() == status:
-                self.get_all_citizens().remove(citizen)
+                citizen.get_party().remove_party_member(citizen)
                 citizen.get_party().vaporize(citizen)
                 self.vaporised_count += 1
+                current_session += 1
+        return current_session
 
     def get_number_of_vaporized(self):
         """
