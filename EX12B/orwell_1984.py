@@ -35,7 +35,6 @@ class Citizen:
             if self.party is not None:
                 self.party.add_party_member(self)
 
-
     def set_party(self, party):
         """
         Set citizen's party. The method does not return anything.
@@ -47,7 +46,11 @@ class Citizen:
                 self.party.remove_party_member(self)
             if party is not None:
                 party.add_party_member(self)
-            self.party = party
+            if party is None and self.party is not None:
+                self.party.remove_party_member(self)
+                self.party = None
+            else:
+                self.party = party
 
     def get_party(self):
         """
@@ -136,7 +139,7 @@ class Party:
                 if citizen.get_status() != "nonperson":
                     if citizen not in self.get_party_members():
                         self.members.append(citizen)
-
+                        citizen.party = self
 
     def remove_party_member(self, citizen):
         """Remove the citizen from the party members' list."""
@@ -151,10 +154,9 @@ class Party:
         :param citizen: Citizen class instance
 
         """
-        self.members.remove(citizen)
         citizen.set_party(None)
-        citizen.set_name(None)
-        citizen.set_status("nonperson")
+        citizen.status = "nonperson"
+        citizen.name = None
 
     def get_privileges(self):
         """
@@ -171,7 +173,7 @@ class Party:
 
         :return: "WAR IS PEACE\nFREEDOM IS SLAVERY\nIGNORANCE IS STRENGTH"
         """
-        pass
+        return "WAR IS PEACE\nFREEDOM IS SLAVERY\nIGNORANCE IS STRENGTH"
 
 
 class InnerParty(Party):
@@ -235,13 +237,12 @@ class BigBrother:
         :param status: string
         :return: number of vaporized people per session
         """
-        all_citizens = self.get_all_citizens()[:] # copy of the list
+        all_citizens = self.get_all_citizens()[:]  # copy of the list
         for citizen in all_citizens:
             if citizen.get_status() == status:
                 self.get_all_citizens().remove(citizen)
                 citizen.get_party().vaporize(citizen)
                 self.vaporised_count += 1
-
 
     def get_number_of_vaporized(self):
         """
