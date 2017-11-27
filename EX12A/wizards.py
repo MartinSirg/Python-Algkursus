@@ -83,14 +83,13 @@ class School:
         "Beauxbatons Academy of Magic"
     ]
 
-    students = []
-
     def __init__(self, name: str):
         """Define school name and make sure it exists in the schools list."""
         if name not in School.schools:
             raise MismatchError("There is no such school!")
         else:
             self.name = name
+            self.students = []
 
     def add_wizard(self, wizard):
         """Add a new wizard to the school.
@@ -104,32 +103,29 @@ class School:
             raise MismatchError("It's a filthy muggle!")
         elif wizard.get_wand() is None:  # No wand defined
             raise MismatchError("It's a filthy muggle!")
-        elif wizard in School.students:
+        elif wizard in self.students:
             return f"{wizard.name} is already studying in this school!"
         else:
-            School.students.append(wizard)
+            self.students.append(wizard)
             return f"{wizard.name} started studying in {self.name}."
 
     def remove_wizard(self, wizard):
         """Remove a wizard from the school."""
-        if wizard in School.students:
-            School.students.remove(wizard)
+        if wizard in self.students:
+            self.students.remove(wizard)
 
     def get_wizards(self):
         """Return a list of students in school."""
-        students_str = []   # since students in list are objects, they must be converted to string, i think hehe
-        for student_object in School.students:
-            students_str.append(str(student_object))
-        return students_str
+        return self.students
 
     def get_wizard_by_wand(self, wand):
         """Search for a wizard, based on wand."""
         Wand.check_wand(wand)
-        for student in School.students:
+        for student in self.students:
             if student.get_wand() == wand:
                 return student
         return None
 
     def __str__(self):
-        """When object is called, return it's name."""
+        """When School object is called, return it's name."""
         return self.name
