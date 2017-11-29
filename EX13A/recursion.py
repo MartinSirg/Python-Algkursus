@@ -13,6 +13,7 @@ def loop_reverse(s: str) -> str:
         new += s[i]
     return new
 
+
 def recursive_reverse(s: str) -> str:
     """
     Reverse a string using recursion.
@@ -26,6 +27,7 @@ def recursive_reverse(s: str) -> str:
         return last_char + next_last
     return ""
 
+
 def loop_sum(n: int) -> int:
     """
     Calculate the sum of all numbers up to n (including n) using a loop.
@@ -37,6 +39,7 @@ def loop_sum(n: int) -> int:
     for i in range(n + 1):
         result += i
     return result
+
 
 def recursive_sum(n: int) -> int:
     """
