@@ -53,12 +53,10 @@ class Wizard:
 
     def __init__(self, name, wand=None):
         """Define wizaed's name and wand if it's formatted correctly."""
-        self.name = name
-        if wand is None:
-            self.wand = None
-        else:
+        if wand is not None:
             Wand.check_wand(wand)
-            self.wand = wand
+        self.name = name
+        self.wand = wand
 
     def set_wand(self, wand):
         """Give wizard a new wand if wand is correctly formatted."""
@@ -87,9 +85,9 @@ class School:
         """Define school name and make sure it exists in the schools list."""
         if name not in School.schools:
             raise MismatchError("There is no such school!")
-        else:
-            self.name = name
-            self.students = []
+
+        self.name = name
+        self.students = []
 
     def add_wizard(self, wizard):
         """Add a new wizard to the school.
@@ -129,3 +127,6 @@ class School:
     def __str__(self):
         """When School object is called, return it's name."""
         return self.name
+wand1 = Wand("Oak","Kek")
+wiz1 = Wizard("KEK",wand1)
+print(wiz1)

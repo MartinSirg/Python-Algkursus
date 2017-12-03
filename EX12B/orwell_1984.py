@@ -13,7 +13,7 @@ class Citizen:
         :param status: status
         """
         self.name = name
-        if isinstance(party, Party) is True:
+        if isinstance(party, Party):
             party = party
         else:
             party = None
