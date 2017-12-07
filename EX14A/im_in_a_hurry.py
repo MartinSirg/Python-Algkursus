@@ -28,7 +28,7 @@ def get_nearby_stops(api_base, lat, lng):
             result.append(data[index_of_min_len])
             distance.remove(distance[index_of_min_len])
             data.remove(data[index_of_min_len])
-            print(result[-1]["name"] + " :  "+result[-1]["distance"])
+            print(result[-1]["name"] + " :  " + result[-1]["distance"])
         return result
 
 
