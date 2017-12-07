@@ -5,7 +5,6 @@ import urllib.request
 
 API_BASE = "https://public-transport-api.herokuapp.com"
 REGION = "tallinn"
-raja_keemia = "tal_03504-1"
 
 
 def get_nearby_stops(api_base, lat, lng):
