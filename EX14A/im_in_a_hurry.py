@@ -23,11 +23,12 @@ def get_nearby_stops(api_base, lat, lng):
         for item in data:
             distance.append(int(item['distance'][:-2]))
         result = []
-        while len(distance) > 1:
+        while len(distance) > 0:
             index_of_min_len = distance.index(min(distance))
             result.append(data[index_of_min_len])
             distance.remove(distance[index_of_min_len])
             data.remove(data[index_of_min_len])
+            print(result[-1]["name"] + " :  "+result[-1]["distance"])
         return result
 
 
@@ -75,3 +76,7 @@ def get_next_departure(api_base, region, stop_id):
     if len(result) == 0:
         return None
     return result[0]
+
+
+lati, longi = 59.3969182, 24.6628295
+print(get_nearby_stops(API_BASE, lati, longi))
