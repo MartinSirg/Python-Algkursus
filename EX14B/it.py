@@ -21,20 +21,7 @@ def get_lines(initial_line_length: float):
 
 
 def finder(row, col):
-    """Find table cell value.
-
-    example table:
-       col 1    2    3    4     5
-    row +----+----+----+----+-----+
-     1  | 1  | 2  | 4  | 7  | 11  |
-        +----+----+----+----+-----+
-     2  | 3  | 5  | 8  | 12 | 17  |
-        +----+----+----+----+-----+
-     3  | 6  | 9  | 13 | 18 | 24  |
-        +----+----+----+----+-----+
-     4  | 10 | 14 | 19 | 25 | 32  |
-     :return cell value
-     """
+    """Find table cell value."""
     diagonal_nr = col + row - 1
     count = 0
     for i in range(1, diagonal_nr):
