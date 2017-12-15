@@ -31,7 +31,7 @@ class Input:
 
     def check_errors(self):
         """DOCstring."""
-        pattern = re.compile(r"(\d{1,2}):(\d{2})")
+        pattern = re.compile(r"([\d]{1,2}):([\d]{2})")
         match = re.match(pattern, self.user_input)
         if match is None:
             raise Exception
