@@ -1,6 +1,7 @@
 """Bus times."""
 import re
 
+
 class Main:
     def __init__(self, file: str):
         self.file = file
@@ -16,13 +17,14 @@ class Main:
         result_mins = "{:02d}".format(result_mins)
         print(f"Your bus will depart at {result_hours}:{result_mins}")
 
+
 class Input:
-    def __init__(self, user_input : str):
+    def __init__(self, user_input: str):
         self.user_input = user_input
 
     def check_errors(self):
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
-        match = re.match(pattern,self.user_input)
+        match = re.match(pattern, self.user_input)
         if match is None:
             raise Exception("Valid time format is hh:mm or h:mm")
         elif int(match.group(1)) > 23 or int(match.group(2)) > 59:
@@ -49,7 +51,7 @@ class File:
         with open("bussiajad.txt") as f:
             for line in f.readlines():
                 info = line.split()
-                for i in range(1,len(info)):
+                for i in range(1, len(info)):
                     time = int(info[0]), int(info[i])
                     self.times.append(time)
 
@@ -66,6 +68,3 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
-
-
-Main("bussiajad.txt").get_departure_time()
