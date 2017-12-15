@@ -82,5 +82,3 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
-
-Main("bussiajad.txt").get_departure_time()
