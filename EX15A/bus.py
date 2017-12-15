@@ -31,9 +31,9 @@ class Input:
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
         match = re.match(pattern, self.user_input)
         if match is None:
-            raise Exception("Valid time format is hh:mm or h:mm")
+            raise Exception
         elif int(match.group(1)) > 23 or int(match.group(2)) > 59:
-            raise Exception("Invalid number")
+            raise Exception
 
     def get_data(self):
         """DOCstring."""
