@@ -11,7 +11,7 @@ def how_many_calls(n):
     if not isinstance(n, int) or n < 0:
         return None
     elif n == 0:
-        return 0
+        return 1
     elif n <= 3:
         return 2 ** (n - 1)
     return how_many_calls(n - 1) + how_many_calls(n - 2) + how_many_calls(n - 3)
