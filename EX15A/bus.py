@@ -9,7 +9,12 @@ class Main:
         time = Input(input("Enter departure time- "))
         time.check_errors()
         hours, minutes = time.get_data()
-        print(hours, minutes)
+        file_object = File(self.file)
+        file_object.import_times_to_list()
+        result_hours, result_mins = file_object.get_next_time(hours, minutes)
+        result_hours = "{:02d}".format(result_hours)
+        result_mins = "{:02d}".format(result_mins)
+        print(f"Your bus will depart at {result_hours}:{result_mins}")
 
 class Input:
     def __init__(self, user_input : str):
@@ -17,8 +22,11 @@ class Input:
 
     def check_errors(self):
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
-        if re.match(pattern, self.user_input) is None:
+        match = re.match(pattern,self.user_input)
+        if match is None:
             raise Exception("Valid time format is hh:mm or h:mm")
+        elif int(match.group(1)) > 23 or int(match.group(2)) > 59:
+            raise Exception("Invalid number")
 
     def get_data(self):
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
@@ -29,20 +37,35 @@ class Input:
         minutes = match.group(2)
         return int(hours), int(minutes)
 
+
 class File:
     def __init__(self, file: str):
         self.file = file
+        self.times = []
 
-    def read_file(self):
-        ajad = []
+    def import_times_to_list(self):
+        if len(self.times) > 0:
+            return 0
         with open("bussiajad.txt") as f:
             for line in f.readlines():
                 info = line.split()
                 for i in range(1,len(info)):
-                    time = info[0], info[i]
-                    ajad.append(time)
-        print(ajad)
-    # TODO: ajad muutujas on ajad tuple vormides (hh:mm)
+                    time = int(info[0]), int(info[i])
+                    self.times.append(time)
 
-fail = File("bussiajad.txt")
-fail.read_file()
+    def get_next_time(self, hours, mins):
+        last_time = self.times[-1]                          # if given time is bigger than last time
+        if hours >= last_time[0] and mins >= last_time[1]:  # return first time
+            return self.times[0]
+        for time in self.times:
+            if time[0] < hours:
+                continue
+            elif time[0] == hours and time[1] <= mins:
+                continue
+            elif time[0] == hours and time[1] > mins:
+                return time[0], time[1]
+            else:
+                return time[0], time[1]
+
+
+Main("bussiajad.txt").get_departure_time()
