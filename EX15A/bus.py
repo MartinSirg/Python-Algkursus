@@ -4,6 +4,7 @@ import re
 
 class Main:
     """DOCstring."""
+
     def __init__(self, file: str):
         """DOCstring."""
         self.file = file
@@ -23,7 +24,9 @@ class Main:
 
 class Input:
     """DOCstring."""
+
     def __init__(self, user_input: str):
+        """DOCstring."""
         self.user_input = user_input
 
     def check_errors(self):
@@ -48,6 +51,7 @@ class Input:
 
 class File:
     """DOCstring."""
+
     def __init__(self, file: str):
         """DOCstring."""
         self.file = file
