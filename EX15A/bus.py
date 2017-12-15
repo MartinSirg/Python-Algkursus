@@ -3,10 +3,13 @@ import re
 
 
 class Main:
+    """DOCstring."""
     def __init__(self, file: str):
+        """DOCstring."""
         self.file = file
 
     def get_departure_time(self):
+        """DOCstring."""
         time = Input(input("Enter departure time- "))
         time.check_errors()
         hours, minutes = time.get_data()
@@ -19,10 +22,12 @@ class Main:
 
 
 class Input:
+    """DOCstring."""
     def __init__(self, user_input: str):
         self.user_input = user_input
 
     def check_errors(self):
+        """DOCstring."""
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
         match = re.match(pattern, self.user_input)
         if match is None:
@@ -31,6 +36,7 @@ class Input:
             raise Exception("Invalid number")
 
     def get_data(self):
+        """DOCstring."""
         pattern = re.compile(r"(\d{1,2}):(\d{2})")
         match = re.match(pattern, self.user_input)
         hours = match.group(1)
@@ -41,11 +47,14 @@ class Input:
 
 
 class File:
+    """DOCstring."""
     def __init__(self, file: str):
+        """DOCstring."""
         self.file = file
         self.times = []
 
     def import_times_to_list(self):
+        """DOCstring."""
         if len(self.times) > 0:
             return 0
         with open("bussiajad.txt") as f:
@@ -56,6 +65,7 @@ class File:
                     self.times.append(time)
 
     def get_next_time(self, hours, mins):
+        """DOCstring."""
         last_time = self.times[-1]                          # if given time is bigger than last time
         if hours >= last_time[0] and mins >= last_time[1]:  # return first time
             return self.times[0]
