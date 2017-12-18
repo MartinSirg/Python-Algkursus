@@ -78,14 +78,14 @@ class File:
         last_time = self.times[-1]                          # if given time is bigger than last time
         if hours >= last_time[0] and mins >= last_time[1]:  # return first time
             return self.times[0]
-        for time in self.times:
-            if time[0] < hours:
+        for time in self.times:                             # loop through times
+            if time[0] < hours:                             # skip times before user hour
                 continue
-            elif time[0] == hours and time[1] <= mins:
+            elif time[0] == hours and time[1] <= mins:      # skip times that are on user hour but before user min
                 continue
-            elif time[0] == hours and time[1] > mins:
+            elif time[0] == hours and time[1] > mins:       # bus time in the same hour as specified hour
                 return time[0], time[1]
-            else:
+            else:                                           # next bus time
                 return time[0], time[1]
 
 
