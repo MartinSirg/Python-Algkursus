@@ -3,14 +3,14 @@ import re
 
 
 class Main:
-    """DOCstring."""
+    """Combines File and Input classes."""
 
     def __init__(self, file: str):
-        """DOCstring."""
+        """Declare file as an object variable."""
         self.file = file
 
     def get_departure_time(self):
-        """DOCstring."""
+        """Ask input and print next bus time."""
         time = Input(input("Enter departure time- "))
         time.check_errors()
         hours, minutes = time.get_data()
@@ -23,14 +23,18 @@ class Main:
 
 
 class Input:
-    """DOCstring."""
+    """Deals with given user input."""
 
     def __init__(self, user_input: str):
         """DOCstring."""
         self.user_input = user_input
 
     def check_errors(self):
-        """DOCstring."""
+        """Check if input is correct.
+
+        correct input is HH:MM or H:MM
+        Raise Exception if false input
+        """
         pattern = re.compile(r"([\d]{1,2}):([\d]{2})")
         match = re.match(pattern, self.user_input)
         if match is None:
@@ -39,7 +43,7 @@ class Input:
             raise Exception
 
     def get_data(self):
-        """DOCstring."""
+        """Return int data from string form."""
         pattern = re.compile(r"([\d]{1,2}):([\d]{2})")
         match = re.match(pattern, self.user_input)
         hours = int(match.group(1))
@@ -48,18 +52,18 @@ class Input:
 
 
 class File:
-    """DOCstring."""
+    """Deals with given text file containing bus files."""
 
     def __init__(self, file: str):
-        """DOCstring."""
+        """Declare file and times object variables."""
         self.file = file
         self.times = []
 
     def import_times_to_list(self):
-        """DOCstring."""
+        """Import bus times(HH:MM) into list."""
         if len(self.times) > 0:
             return 0
-        with open("bussiajad.txt") as f:
+        with open(self.file) as f:
             for line in f.readlines():
                 info = line.split()
                 for i in range(1, len(info)):
@@ -67,7 +71,7 @@ class File:
                     self.times.append(time)
 
     def get_next_time(self, hours, mins):
-        """DOCstring."""
+        """Look at given time and return next time from bus schedule."""
         last_time = self.times[-1]                          # if given time is bigger than last time
         if hours >= last_time[0] and mins >= last_time[1]:  # return first time
             return self.times[0]
