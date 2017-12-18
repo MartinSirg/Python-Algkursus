@@ -20,7 +20,6 @@ class Main:
         result_mins = "{:02d}".format(result_mins)
         print(f"Your bus will depart at {result_hours}:{result_mins}")
 
-
 class Input:
     """Deals with given user input."""
 
@@ -38,7 +37,7 @@ class Input:
         match = re.match(pattern, self.user_input)
         if match is None:
             raise Exception
-        elif int(match.group(1)) > 23 or int(match.group(2)) > 59:
+        elif int(match.group(1)) > 24 or int(match.group(2)) > 59:
             raise Exception
 
     def get_data(self):
@@ -83,4 +82,3 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
-
