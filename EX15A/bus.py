@@ -20,6 +20,7 @@ class Main:
         result_mins = "{:02d}".format(result_mins)
         print(f"Your bus will depart at {result_hours}:{result_mins}")
 
+
 class Input:
     """Deals with given user input."""
 
@@ -84,3 +85,15 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
+
+
+""" Äge for loop
+--------------------------------------------------------------------------
+    def get_departure_time(self, inputs):
+        time = Input(inputs)   # Input(input("Enter departure time- "))
+--------------------------------------------------------------------------
+for int1 in range(25):
+    for j in range(60):
+        j = "{:02d}".format(j)
+        print(f"Input {int1}:{j}", end=" == ")
+        Main("bussiajad.txt").get_departure_time(f"{int1}:{j}")"""
