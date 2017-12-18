@@ -17,7 +17,6 @@ class Main:
         file_object = File(self.file)
         file_object.import_times_to_list()
         result_hours, result_mins = file_object.get_next_time(hours, minutes)
-        result_hours = "{:02d}".format(result_hours)
         result_mins = "{:02d}".format(result_mins)
         print(f"Your bus will depart at {result_hours}:{result_mins}")
 
@@ -84,3 +83,7 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
+
+Main("bussiajad.txt").get_departure_time()
+Main("bussiajad2.txt").get_departure_time()
+Main("bussiajad3.txt").get_departure_time()
