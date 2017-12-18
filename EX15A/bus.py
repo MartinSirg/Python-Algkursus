@@ -73,6 +73,8 @@ class File:
 
     def get_next_time(self, hours, mins):
         """Look at given time and return next time from bus schedule."""
+        if len(self.times) == 0:
+            raise Exception
         last_time = self.times[-1]                          # if given time is bigger than last time
         if hours >= last_time[0] and mins >= last_time[1]:  # return first time
             return self.times[0]
