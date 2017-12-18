@@ -40,6 +40,8 @@ class Input:
             raise Exception
         elif int(match.group(1)) > 24 or int(match.group(2)) > 59:
             raise Exception
+        elif int(match.group(1)) == 24 and int(match.group(2)) != 0:
+            raise Exception
 
     def get_data(self):
         """Return int data from string form."""
