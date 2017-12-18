@@ -45,6 +45,8 @@ class Input:
         pattern = re.compile(r"([\d]{1,2}):([\d]{2})")
         match = re.match(pattern, self.user_input)
         hours = int(match.group(1))
+        if hours == 24:
+            hours = 0
         minutes = int(match.group(2))
         return hours, minutes
 
@@ -82,3 +84,5 @@ class File:
                 return time[0], time[1]
             else:
                 return time[0], time[1]
+
+Main("bussiajad.txt").get_departure_time()
