@@ -25,7 +25,7 @@ class Input:
     """Deals with given user input."""
 
     def __init__(self, user_input: str):
-        """DOCstring."""
+        """Construct user input object value."""
         self.user_input = user_input
 
     def check_errors(self):
@@ -63,7 +63,7 @@ class File:
     def import_times_to_list(self):
         """Import bus times(HH:MM) into list."""
         if len(self.times) > 0:
-            return 0
+            self.times.clear()
         with open(self.file) as f:
             for line in f.readlines():
                 info = line.split()
@@ -73,8 +73,8 @@ class File:
 
     def get_next_time(self, hours, mins):
         """Look at given time and return next time from bus schedule."""
-        if len(self.times) == 0:
-            raise Exception
+        if len(self.times) == 0 or not isinstance(self.times, list):
+            raise Exception("Issue with times list")
         last_time = self.times[-1]                          # if given time is bigger than last time
         if hours >= last_time[0] and mins >= last_time[1]:  # return first time
             return self.times[0]
