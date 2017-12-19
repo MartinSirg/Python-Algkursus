@@ -174,11 +174,9 @@ class Solitaire:
             self.print_game()
             if self.has_won() is True:
                 print("GRATZZZ you wonned!1!!1!")
-                time.sleep(5)
                 break
             elif self.has_lost() is True:
                 print("You lost agiain, give up fam.")
-                time.sleep(5)
                 break
             correct_inputs = ["q", "r", "d"]
             for i in range(Solitaire.columns):
@@ -189,7 +187,6 @@ class Solitaire:
                 continue
             if given_input == "q":
                 print("You have quit the game.")
-                time.sleep(3)
                 break
             elif given_input == "r":
                 rules = True
