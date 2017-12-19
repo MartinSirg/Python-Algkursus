@@ -2,6 +2,8 @@
 
 from itertools import zip_longest
 from textwrap import dedent
+import time
+import os
 
 from cards import Card, Deck
 
@@ -30,7 +32,7 @@ class Solitaire:
         if Solitaire.columns * Solitaire.cards_in_column > 50:
             if Solitaire.columns * Solitaire.cards_in_column < 1:
                 raise Exception("Incorrect amount of columns and cards in columns")
-        self.deck = Deck(symbols=True, decorated=False)  # -> Deck instance
+        self.deck = Deck(symbols=True)  # -> Deck instance
         self.tableau = []  # -> list of (columns[lists] (where each list -> cards_in_column * Card instances))
         self.deck.shuffle_deck()
         for i in range(Solitaire.columns):
@@ -43,7 +45,6 @@ class Solitaire:
         for i in range(len(self.deck.cards)):
             self.stock.append(self.deck.deal_card())
 
-
     def can_move(self, card) -> bool:
         """
         Validate if a card from the tableau can be moved to the waste pile.
@@ -53,8 +54,13 @@ class Solitaire:
         Example: 8 is adjacent to 7 and 9. Ace is only adjacent to 2.
         King is only adjacent to Queen.
         """
-        rank = card.rank()
-        pass
+        tableau_rank = card.rank
+        waste_rank = self.waste[-1].rank
+        if tableau_rank == 13 and waste_rank != 12 or tableau_rank == 1 and waste_rank != 2:
+            return False
+        if abs(tableau_rank - waste_rank) != 1:
+            return False
+        return True
 
     def move_card(self, col: int):
         """
@@ -63,7 +69,10 @@ class Solitaire:
         Does not validate the move.
         :param col: index of column
         """
-        pass  # your code
+        if len(self.tableau[col]) > 0:
+            card_to_move = self.tableau[col][-1]
+            self.tableau[col].remove(card_to_move)
+            self.waste.append(card_to_move)
 
     def deal_from_stock(self):
         """
@@ -71,11 +80,19 @@ class Solitaire:
 
         If the stock is empty, do nothing.
         """
-        pass  # your code
+        if len(self.stock) != 0:
+            card_to_move = self.stock[-1]
+            self.stock.remove(card_to_move)
+            self.waste.append(card_to_move)
 
     def has_won(self) -> bool:
         """Check for the winning position - no cards left in tableau."""
-        pass  # your code
+        for col in self.tableau:    # loop through cols
+            if len(col) > 0:        # if col is not empty
+                return False        # has_won() -> False
+        return True
+
+
 
     def has_lost(self) -> bool:
         """
@@ -83,7 +100,15 @@ class Solitaire:
 
         Losing position: no cards left in stock and no possible moves.
         """
-        pass  # your code
+        if len(self.stock) > 0:
+            return False
+        else:
+            for col in self.tableau:                # loop through cols
+                if len(col) == 0:                   # if col is empty continue
+                    continue                        #
+                if self.can_move(col[-1]) is True:  # if a move can still be made
+                    return False                    # player has not lost
+            return True                             # if cant move after loop player has lost
 
     def print_game(self):
         """
@@ -136,15 +161,54 @@ class Solitaire:
         Use input() for player input.
         Available commands are described in rules().
         """
-        pass  # your code
+        message = ""
+        rules = False
+        while True:
+            os.system("cls")
+            if len(message) > 0:
+                print(message)
+                message = ""
+            if rules is True:
+                self.rules()
+                rules = False
+            self.print_game()
+            if self.has_won() is True:
+                print("GRATZZZ you wonned!1!!1!")
+                time.sleep(5)
+                break
+            elif self.has_lost() is True:
+                print("You lost agiain, give up fam.")
+                time.sleep(5)
+                break
+            correct_inputs = ["q", "r", "d"]
+            for i in range(Solitaire.columns):
+                correct_inputs.append(str(i))
+            given_input = input("Enter col number, d, q or r: ")
+            if given_input not in correct_inputs:
+                message = "Wrong input"
+                continue
+            if given_input == "q":
+                print("You have quit the game.")
+                time.sleep(3)
+                break
+            elif given_input == "r":
+                rules = True
+                continue
+            elif given_input == "d":
+                self.deal_from_stock()
+                continue
+            else:
+                col = int(given_input)
+                if len(self.tableau[col]) == 0:
+                    message = "That Column is empty!"
+                    continue
+                if self.can_move(self.tableau[col][-1]) is False:
+                    message = "Can't move that card!"
+                    continue
+                else:
+                    self.move_card(col)
 
 
 if __name__ == '__main__':
     s = Solitaire()
-    print(s.deck)
-    print(s.tableau)
-    print(f"Table has {len(s.tableau * s.cards_in_column)} cards")
-    print(s.stock)
-    print(f"Stock has {len(s.stock)} cards")
-    print(s.waste)
-    print(type(s.waste[0]))
+    s.play()
